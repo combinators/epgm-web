@@ -35,11 +35,11 @@ object ConsolidatedStateResource{
 
 class ConsolidatedStateLevelHandler () {
 
-  def create: List[ConsolidatedStateResource] = {
-    createConsolidatedStateResource()
+  def create(sCode: String): List[ConsolidatedStateResource] = {
+    createConsolidatedStateResource(sCode)
   }
 
-  private def createConsolidatedStateResource(): List[ConsolidatedStateResource] = {
+  private def createConsolidatedStateResource(sCode: String): List[ConsolidatedStateResource] = {
     ConsolidatedStateResource(150000, 30000, 45000, 75000) :: Nil
   }
 

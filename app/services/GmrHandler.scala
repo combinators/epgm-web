@@ -41,11 +41,11 @@ object GmrResource {
 
 class GmrHandler {
 
-  def create: List[GmrResource] = {
-    createGmrResource()
+  def create(awCode: String): List[GmrResource] = {
+    createGmrResource(awCode)
   }
 
-  private def createGmrResource(): List[GmrResource] = {
+  private def createGmrResource(awCode: String): List[GmrResource] = {
     GmrResource(
       1,"GANESH", "A KHADE", "M", "08/24/2014","OBC",
       List("08/13/2016","07/08/2016","06/10/2016"),

@@ -14,6 +14,6 @@ import services.ConsolidatedStateLevelHandler
 @Singleton
 class StateDetailsController extends Controller{
 
-  def getConsolidatedStateLevel = Action { Ok(Json.toJson(new ConsolidatedStateLevelHandler().create)) }
+  def getStateData(sCode: String) = Action { Ok(Json.toJson(new ConsolidatedStateLevelHandler().create(sCode))) }
 
 }

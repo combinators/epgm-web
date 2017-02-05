@@ -9,6 +9,6 @@ import services.GmrHandler
   */
 class GmrController extends Controller{
 
-  def getGrowthMonitoringReport(code: String) = Action(Ok(Json.toJson(new GmrHandler().create)))
+  def getGMR(awCode: String) = Action(Ok(Json.toJson(new GmrHandler().create(awCode))))
 
 }
