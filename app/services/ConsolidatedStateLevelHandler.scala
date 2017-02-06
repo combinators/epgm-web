@@ -2,6 +2,7 @@ package services
 
 import javax.inject.Inject
 
+import dao.DocumentDBDao
 import play.api.libs.json._
 
 /**
@@ -40,7 +41,7 @@ class ConsolidatedStateLevelHandler () {
   }
 
   private def createConsolidatedStateResource(sCode: String): List[ConsolidatedStateResource] = {
-    ConsolidatedStateResource(150000, 30000, 45000, 75000) :: Nil
+    new DocumentDBDao().getConsolidatedStateLevel(sCode)
   }
 
 }
