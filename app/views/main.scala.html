@@ -10,14 +10,293 @@
 <html lang="en">
     <head>
         @* Here's where we render the page title `String`. *@
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Dashboard for Aanganwadi">
+        <meta name="author" content="Sthapana">
         <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap-reset.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/font-awesome.css")" />
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/jquery.easy-pie-chart.css")" type="text/css" />
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/owl.carousel.css")" type="text/css">
+        <link rel="stylesheet href="@routes.Assets.versioned("stylesheets/slidebars.css")">
+        <link rel="stylesheet href="@routes.Assets.versioned("stylesheets/style.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/style-responsive.css")" />
+
+        <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+        <script src="@routes.Assets.versioned("javascripts/html5shiv.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/respond.min.js")" type="text/javascript"></script>
+        <script src="javascripts/respond.min.js"></script>
+        <![endif]-->
+
+
+
+
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+
     </head>
     <body>
-        @* And here's where we render the `Html` object containing
-         * the page content. *@
-        @content
+
+    <section id="container" >
+        <!--header start-->
+        <header class="header white-bg">
+            <div class="sidebar-toggle-box">
+                <i class="fa fa-bars"></i>
+            </div>
+            <!--logo start-->
+            <a href="index.html" class="logo">EPGM</span></a>
+            <!--logo end-->
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar"  class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <li>
+                        <a class="active" href="index.html">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" >
+                            <i class=" fa fa-bar-chart-o"></i>
+                            <span>Reports</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a  href="morris.html">Morris</a></li>
+                            <li><a  href="chartjs.html">Chartjs</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" >
+                            <i class="fa fa-th"></i>
+                            <span>Data Tables</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a  href="basic_table.html">Basic Table</a></li>
+                            <li><a  href="responsive_table.html">Responsive Table</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <!--state overview start-->
+                <div class="row state-overview">
+                    <div class="col-lg-3 col-sm-6">
+                        <section class="panel">
+                            <div class="symbol terques">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="value">
+                                <h1 class="count">
+                                    0
+                                </h1>
+                                <p>Weighed</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <section class="panel">
+                            <div class="symbol red">
+                                <i class="fa fa-tags"></i>
+                            </div>
+                            <div class="value">
+                                <h1 class=" count2">
+                                    0
+                                </h1>
+                                <p>Severly</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <section class="panel">
+                            <div class="symbol yellow">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <div class="value">
+                                <h1 class=" count3">
+                                    0
+                                </h1>
+                                <p>Moderate</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <section class="panel">
+                            <div class="symbol blue">
+                                <i class="fa fa-bar-chart-o"></i>
+                            </div>
+                            <div class="value">
+                                <h1 class=" count4">
+                                    0
+                                </h1>
+                                <p>Normal</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!--state overview end-->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!--Health Monitoring Report Chart Start-->
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Health Monitoring Report
+                            </header>
+                            <div class="panel-body">
+                                <section id="flip-scroll">
+                                    <table class="table table-bordered table-striped table-condensed cf">
+                                        <thead class="cf">
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Surname</th>
+                                            <th>M/F</th>
+                                            <th>D-O-B</th>
+                                            <th>Class</th>
+                                            <th>Log date</th>
+                                            <th>Weight</th>
+                                            <th>WHO</th>
+                                            <th>Weight_Add</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>GANESH</td>
+                                            <td>A AKHADE</td>
+                                            <td>M</td>
+                                            <td>8-Feb-2008</td>
+                                            <td></td>
+                                            <td>11-Feb-2014</td>
+                                            <td>19.745</td>
+                                            <td>NOR</td>
+                                            <td>0</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>GANESH</td>
+                                            <td>A AKHADE</td>
+                                            <td>M</td>
+                                            <td>8-Feb-2008</td>
+                                            <td></td>
+                                            <td>11-Feb-2014</td>
+                                            <td>19.745</td>
+                                            <td>NOR</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>GANESH</td>
+                                            <td>A AKHADE</td>
+                                            <td>M</td>
+                                            <td>8-Feb-2008</td>
+                                            <td></td>
+                                            <td>11-Feb-2014</td>
+                                            <td>19.745</td>
+                                            <td>NOR</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>GANESH</td>
+                                            <td>A AKHADE</td>
+                                            <td>M</td>
+                                            <td>8-Feb-2008</td>
+                                            <td></td>
+                                            <td>11-Feb-2014</td>
+                                            <td>19.745</td>
+                                            <td>NOR</td>
+                                            <td>0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                            </div>
+                            <!--Health Monitoring Report Chart end-->
+                        </section>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+        <!--main content end-->
+
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                2017 &copy; EPGM by Sthapana.
+                <a href="#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="js/owl.carousel.js" ></script>
+    <script src="js/jquery.customSelect.min.js" ></script>
+    <script src="js/respond.min.js" ></script>
+
+    <!--right slidebar-->
+    <script src="js/slidebars.min.js"></script>
+
+    <!--common script for all pages-->
+    <script src="js/common-scripts.js"></script>
+
+    <!--script for this page-->
+    <script src="js/sparkline-chart.js"></script>
+    <script src="js/easy-pie-chart.js"></script>
+    <script src="js/count.js"></script>
+
+    <script>
+
+      //owl carousel
+
+      $(document).ready(function() {
+          $("#owl-demo").owlCarousel({
+              navigation : true,
+              slideSpeed : 300,
+              paginationSpeed : 400,
+              singleItem : true,
+			  autoPlay:true
+
+          });
+      });
+
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+      $(window).on("resize",function(){
+          var owl = $("#owl-demo").data("owlCarousel");
+          owl.reinit();
+      });
+
+  </script>
+
     </body>
 </html>
