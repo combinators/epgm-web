@@ -13,10 +13,10 @@ import play.api.libs.json._
   * DTO for displaying Consolidated State Level Information
   */
 case class ConsolidatedStateResource
-  (beneficieriesWeighed:Long,
-   severlyUnderWeightBenefeciaries:Long,
-   moderatelyUnderWeightBenefeciaries:Long,
-   normalBenefeciaries:Long)
+  (beneficieriesWeighed:Int,
+   severlyUnderWeightBenefeciaries:Int,
+   moderatelyUnderWeightBenefeciaries:Int,
+   normalBenefeciaries:Int)
 
 object ConsolidatedStateResource{
   /**

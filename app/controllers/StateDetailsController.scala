@@ -13,7 +13,6 @@ import services.ConsolidatedStateLevelHandler
   */
 @Singleton
 class StateDetailsController extends Controller{
-
-  def getStateData(sCode: String) = Action { Ok(Json.toJson(new ConsolidatedStateLevelHandler().create(sCode))) }
-
+  def getStateData(sCode: String) =
+    Action { Ok(Json.toJson(ResourceFactory().getConsolidatedStateDetails(sCode))) }
 }

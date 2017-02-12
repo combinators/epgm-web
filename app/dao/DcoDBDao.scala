@@ -1,3 +1,4 @@
+
 package dao
 
 
@@ -9,7 +10,7 @@ import com.microsoft.azure.documentdb.{ConnectionPolicy, ConsistencyLevel, Docum
 
 case class SomePojo(childcode:String,weight:String,height:String,bmi:String,whounderweight:String,
                     iap:String,day:String,month:String,year:String,wasting:String,
-                    stunting:String,minutes:String,hours:String,aanganwadicode:String)
+                    stunting:String,hours:String,minutes:String,aanganwadicode:String)
 object DcoDBDao {
 
   def main(args: Array[String]): Unit = {
@@ -28,33 +29,41 @@ object DcoDBDao {
        "SELECT * FROM logdata WHERE myCollection.email = 'allen [at] contoso.com'",
        null).getQueryIterable().toList();*/
 
-    var lisaPojo = SomePojo("010","015263","0168","0021","0",
-      "0","12","01","17","1",
-      "0","34","10","52005050307");
-    var somePojoJson = new Gson().toJson(lisaPojo);
-    var lisaDocument = new Document(somePojoJson);
-
+//    var lisaPojo = SomePojo("29","11.77","0","3"," MUW"," NOR","8","2","2016","","","12","00","27509010101");
+//    var somePojoJson = new Gson().toJson(lisaPojo);
+//    var lisaDocument = new Document(somePojoJson);
+//
 //    var lisaD = documentClient.createDocument(
 //      "dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID, lisaDocument, null, false)
 //      .getResource();
+//    println("----------> "+lisaD)
+//    lisaPojo = SomePojo("30","11.705","0","3"," MUW"," NOR","3","11","2015","","","12","00","27509010101");
+//    somePojoJson = new Gson().toJson(lisaPojo);
+//    lisaDocument = new Document(somePojoJson);
+//    lisaD = documentClient.createDocument("dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID, lisaDocument,null,false).getResource();
 //    println("----------> "+lisaD)
 
               val results  = documentClient
                 .queryDocuments(
                   "dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID,
-                  "SELECT * FROM myCollection",
+                  "SELECT * FROM myCollection where myCollection.whounderweight=\"   \"",
                   null).getQueryIterable().toList;
-//        println("----------> "+documentClient.getDatabaseAccount.getCollection("log_data").toString)
+    println("----------------> results.size : "+ results.size)
+//    println("----------------> results : "+ results)
 
-    var someDoc = documentClient.deleteDocument(results.get(0).getSelfLink,null)
-    println("............"+someDoc)
-    val results1  = documentClient
+    for(i <- 0 to results.size()-1){
+      results.get(i).set("whounderweight","5")
+      var results1 = documentClient.replaceDocument(results.get(i),null ).getResource
+    }
+
+    val results2  = documentClient
       .queryDocuments(
         "dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID,
-        "SELECT * FROM myCollection",
+        "SELECT * FROM myCollection where myCollection.whounderweight=\"5\"",
         null).getQueryIterable().toList;
 
-    println("=============>"+results1)
+        println("----------> "+results2.size())
+
 
   }
 

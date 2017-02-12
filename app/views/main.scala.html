@@ -4,7 +4,8 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+@(title: String, rsf: ResourceFactory)
+@conStateData = @{rsf.getConsolidatedStateDetails("27")}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +30,6 @@
         <script src="assets/javascripts/html5shiv.js"></script>
         <script src="assets/javascripts/respond.min.js"></script>
         <![endif]-->
-
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 
     </head>
@@ -95,7 +95,7 @@
                             </div>
                             <div class="value">
                                 <h1 class="count">
-                                    0
+                                    @conStateData.beneficieriesWeighed
                                 </h1>
                                 <p>Weighed</p>
                             </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="value">
                                 <h1 class=" count2">
-                                    0
+                                    @conStateData.severlyUnderWeightBenefeciaries
                                 </h1>
                                 <p>Severly</p>
                             </div>
@@ -121,7 +121,7 @@
                             </div>
                             <div class="value">
                                 <h1 class=" count3">
-                                    0
+                                    @conStateData.moderatelyUnderWeightBenefeciaries
                                 </h1>
                                 <p>Moderate</p>
                             </div>
@@ -134,7 +134,7 @@
                             </div>
                             <div class="value">
                                 <h1 class=" count4">
-                                    0
+                                    @conStateData.normalBenefeciaries
                                 </h1>
                                 <p>Normal</p>
                             </div>
@@ -264,7 +264,6 @@
     <script src="assets/javascripts/sparkline-chart.js"></script>
     <script src="assets/javascripts/easy-pie-chart.js"></script>
     <script src="assets/javascripts/count.js"></script>
-
     <script>
 
       //owl carousel

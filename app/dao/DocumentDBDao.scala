@@ -2,6 +2,7 @@ package dao
 
 import com.microsoft.azure.documentdb.{ConnectionPolicy, ConsistencyLevel, Document, DocumentClient}
 import services.{ConsolidatedStateResource, GmrResource}
+import scala.collection.JavaConverters._
 
 /**
   * Created by chocoklate on 5/2/17.
@@ -18,32 +19,17 @@ class DocumentDBDao {
 
   def getConsolidatedStateLevel(stateCode: String):List[ConsolidatedStateResource] = {
 
-
-    val total  = documentClient.queryDocuments(
-      "dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID,
-      "SELECT * FROM myCollection where STARTSWITH(myCollection.aanganwadicode,\""+stateCode+"\")",
-      null).getQueryIterable().toList.size();
-
-    val under  = documentClient.queryDocuments(
+    val weightGrouped  = documentClient.queryDocuments(
       "dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID,
       "SELECT * FROM myCollection where STARTSWITH(myCollection.aanganwadicode,\""+stateCode+"\")" +
-        "and myCollection.whounderweight = \"2\"",
-      null).getQueryIterable().toList.size();
+        "and myCollection.whounderweight IN (\"0\",\"1\",\"2\",\"3\")",
+      null).getQueryIterable().asScala.groupBy(w => w.get("whounderweight")).map(x => (x._1,x._2.size))
 
-    val moderate  = documentClient.queryDocuments(
-      "dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID,
-      "SELECT * FROM myCollection where STARTSWITH(myCollection.aanganwadicode,\""+stateCode+"\")" +
-        "and myCollection.whounderweight = \"1\"",
-      null).getQueryIterable().toList.size();
-
-    val normal  = documentClient.queryDocuments(
-      "dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID,
-      "SELECT * FROM myCollection where STARTSWITH(myCollection.aanganwadicode,\""+stateCode+"\")" +
-        "and myCollection.whounderweight = \"0\"",
-      null).getQueryIterable().toList.size();
-
-
-    ConsolidatedStateResource(total, under, moderate, normal) :: Nil
+    ConsolidatedStateResource(
+      weightGrouped.toList.map(x=>x._2).sum,
+      weightGrouped.get("2").getOrElse(0),
+      weightGrouped.get("1").getOrElse(0),
+      weightGrouped.get("0").getOrElse(0)) :: Nil
   }
 
   def getGrowthMonitoringReport(aanganwadiCode:String):List[GmrResource] = {
@@ -57,6 +43,6 @@ class DocumentDBDao {
 
 object DbRun{
   def main(args: Array[String]): Unit = {
-    println("==========="+new DocumentDBDao().getConsolidatedStateLevel("52"))
+    println("==========="+new DocumentDBDao().getConsolidatedStateLevel("27"))
   }
 }
