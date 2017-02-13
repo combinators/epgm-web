@@ -2,10 +2,9 @@ package controllers
 
 import javax.inject.Singleton
 
+import model.ResourceFactory
 import play.api.libs.json.Json
 import play.api.mvc._
-import services.ConsolidatedStateLevelHandler
-
 
 
 /**
@@ -13,6 +12,8 @@ import services.ConsolidatedStateLevelHandler
   */
 @Singleton
 class StateDetailsController extends Controller{
-  def getStateData(sCode: String) =
-    Action { Ok(Json.toJson(ResourceFactory().getConsolidatedStateDetails(sCode))) }
+  def getSpecificStateData(sCode: String) =
+    Action { Ok(Json.toJson(ResourceFactory().getSpecificStateDetails(sCode))) }
+  def getAllStatesData() =
+    Action { Ok(Json.toJson(ResourceFactory().getAllStateDetails())) }
 }

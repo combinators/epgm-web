@@ -1,14 +1,7 @@
-package services
+package model.entites
 
-import javax.inject.Inject
 
-import dao.DocumentDBDao
 import play.api.libs.json._
-
-/**
-  * Created by kirankumarbs on 5/2/17.
-  */
-
 /**
   * DTO for displaying Consolidated State Level Information
   */
@@ -32,16 +25,4 @@ object ConsolidatedStateResource{
       )
     }
   }
-}
-
-class ConsolidatedStateLevelHandler () {
-
-  def create(sCode: String): List[ConsolidatedStateResource] = {
-    createConsolidatedStateResource(sCode)
-  }
-
-  private def createConsolidatedStateResource(sCode: String): List[ConsolidatedStateResource] = {
-    new DocumentDBDao().getConsolidatedStateLevel(sCode)
-  }
-
 }

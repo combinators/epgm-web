@@ -1,5 +1,7 @@
 package controllers
 
+
+import model.ResourceFactory
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 import services.GmrHandler
@@ -9,6 +11,6 @@ import services.GmrHandler
   */
 class GmrController extends Controller{
 
-  def getGMR(awCode: String) = Action(Ok(Json.toJson(new GmrHandler().create(awCode))))
+  def getGMR(awCode: String) = Action(Ok(Json.toJson(ResourceFactory().getGMRDetails(awCode))))
 
 }

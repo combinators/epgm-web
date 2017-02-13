@@ -1,35 +1,16 @@
 package dao
 
-import com.microsoft.azure.documentdb.{ConnectionPolicy, ConsistencyLevel, Document, DocumentClient}
-import services.{ConsolidatedStateResource, GmrResource}
-import scala.collection.JavaConverters._
+import services.GmrResource
 
 /**
   * Created by chocoklate on 5/2/17.
   */
+
 class DocumentDBDao {
 
-  val HOST = "https://epgm.documents.azure.com:443/";
-  val MASTER_KEY = "JzmoDSMDC7BoTPzkA0QdeEyI4WJJSGDyaSH83n8yqckxkRRjHW8U8xJbJq7ivYEXaaGNzaIzvSUQg2tRZ06xfA==";
-  val DATABASE_ID = "epgm-db"
-  val COLLECTION_ID = "log_data"
-  val documentClient = new DocumentClient(HOST,
-    MASTER_KEY, ConnectionPolicy.GetDefault(),
-    ConsistencyLevel.Session)
-
-  def getConsolidatedStateLevel(stateCode: String):List[ConsolidatedStateResource] = {
-
-    val weightGrouped  = documentClient.queryDocuments(
-      "dbs/" + DATABASE_ID + "/colls/" + COLLECTION_ID,
-      "SELECT * FROM myCollection where STARTSWITH(myCollection.aanganwadicode,\""+stateCode+"\")" +
-        "and myCollection.whounderweight IN (\"0\",\"1\",\"2\",\"3\")",
-      null).getQueryIterable().asScala.groupBy(w => w.get("whounderweight")).map(x => (x._1,x._2.size))
-
-    ConsolidatedStateResource(
-      weightGrouped.toList.map(x=>x._2).sum,
-      weightGrouped.get("2").getOrElse(0),
-      weightGrouped.get("1").getOrElse(0),
-      weightGrouped.get("0").getOrElse(0)) :: Nil
+  def getWHOIndexedData(sCode: Option[String]):Map[AnyRef, Int] = sCode match {
+    case Some(x) => WHOIndexData.getSpecificStateData(x)
+    case None => WHOIndexData.getAllStateData()
   }
 
   def getGrowthMonitoringReport(aanganwadiCode:String):List[GmrResource] = {
@@ -43,6 +24,6 @@ class DocumentDBDao {
 
 object DbRun{
   def main(args: Array[String]): Unit = {
-    println("==========="+new DocumentDBDao().getConsolidatedStateLevel("27"))
+    println("==========="+new DocumentDBDao().getWHOIndexedData(Option("27")))
   }
 }

@@ -2,6 +2,7 @@ package controllers
 
 import javax.inject._
 
+import model.ResourceFactory
 import play.api._
 import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
 import play.api.mvc._
@@ -33,7 +34,7 @@ class HomeController @Inject() (ws: WSClient)extends Controller {
 
 
   def index = Action {
-    Ok(views.html.index("EPGM Dashboard",ResourceFactory()))
+    Ok(views.html.index("EPGM Dashboard"))
   }
 
 }
