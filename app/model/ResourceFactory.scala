@@ -1,6 +1,7 @@
 package model
 
-import model.entites.{ConsolidatedStateResource, EPGMDashbordData}
+import model.entites.ConsolidatedStateResource
+import model.entites.dashboard.EPGMDashbordData
 import services._
 
 /**

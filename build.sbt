@@ -13,6 +13,8 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 libraryDependencies += "junit" % "junit" % "4.12"
 libraryDependencies += "com.microsoft.azure" % "azure-documentdb" % "1.9.1"
 libraryDependencies += "com.google.code.gson" % "gson" % "2.8.0"
+libraryDependencies += "net.debasishg" %% "redisclient" % "3.3"
+libraryDependencies += "redis.clients" % "jedis" % "2.9.0"
 libraryDependencies += filters
 
 

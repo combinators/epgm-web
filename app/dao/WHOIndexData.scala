@@ -1,7 +1,7 @@
 package dao
 
-import dao.DBFactory.getDocumentClient
-import dao.DBFactory._
+import dao.DBConfigFactory.getDocumentClient
+import dao.DBConfigFactory._
 import model.entites.ConsolidatedStateResource
 
 import scala.collection.JavaConverters._

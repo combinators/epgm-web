@@ -5,7 +5,7 @@ import com.microsoft.azure.documentdb.{ConnectionPolicy, ConsistencyLevel, Docum
 /**
   * Created by kirankumarbs on 12/2/17.
   */
-object DBFactory{
+object DBConfigFactory{
     def getHOST = "";
     def getMASTER_KEY = "";
     def getDATABASE_ID = ""
