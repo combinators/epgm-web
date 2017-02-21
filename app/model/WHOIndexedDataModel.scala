@@ -2,6 +2,7 @@ package model
 
 import dao.DocumentDBDao
 import model.entites.ConsolidatedStateResource
+import model.entites.dashboard.EPGMDashbordData
 
 
 /**
@@ -14,19 +15,21 @@ import model.entites.ConsolidatedStateResource
 
 class WHOIndexedDataModel() {
 
-  def create(sCode: Option[String]): List[ConsolidatedStateResource] =
-    createConsolidatedStateResource(sCode)
+  def create(sCode: Option[String], docType: String): List[ConsolidatedStateResource] =
+    createConsolidatedStateResource(sCode, docType)
 
-  private def createConsolidatedStateResource(sCode: Option[String]): List[ConsolidatedStateResource] = {
-    //val whoIndexGrouped = new DocumentDBDao().getWHOIndexedData(sCode)
+  private def createConsolidatedStateResource(sCode: Option[String], docType: String): List[ConsolidatedStateResource] = {
 
-/*    ConsolidatedStateResource(
-      whoIndexGrouped.toList.map(x=>x._2).sum,
-      whoIndexGrouped.get(under).getOrElse(0),
-      whoIndexGrouped.get(severe).getOrElse(0),
-      whoIndexGrouped.get(normal).getOrElse(0)) :: Nil*/
+    val ePGMDashboardInitData = EPGMDashbordData(sCode.get, docType)
+    val gd = ePGMDashboardInitData.gradeData
 
-    ConsolidatedStateResource(100,0,0,100) :: Nil
+    ConsolidatedStateResource(
+      gd.total,
+      gd.severe,
+      gd.moderate,
+      gd.normal) :: Nil
+
+    //ConsolidatedStateResource(100,0,0,100) :: Nil
   }
 
 }

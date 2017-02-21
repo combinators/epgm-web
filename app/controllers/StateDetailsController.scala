@@ -12,8 +12,8 @@ import play.api.mvc._
   */
 @Singleton
 class StateDetailsController extends Controller{
-  def getSpecificStateData(sCode: String) =
-    Action { Ok(Json.toJson(ResourceFactory().getSpecificStateDetails(sCode))) }
+  def getSpecificStateData(sCode: String, docType: String="dashboard") =
+    Action { Ok(Json.toJson(ResourceFactory().getSpecificStateDetails(sCode, docType))) }
   def getAllStatesData() =
     Action { Ok(Json.toJson(ResourceFactory().getAllStateDetails())) }
 }

@@ -18,9 +18,9 @@ object MonthData{
     val currDt = md.get("currentmonth").getOrElse("01")
 
     //val currYr = md.get("currentyear").get
-    val mDataRaw = List("01" -> md.get("januarycount").get, "02" -> md.get("februarycount").get,"03" -> md.get("marchcount").get, "04" -> md.get("aprilcount").get,
-      "05" -> md.get("maycount").get, "06" -> md.get("junecount").get, "07" -> md.get("julycount").get, "08" -> md.get("augustcount").get, "09" -> md.get("septembercount").get,
-      "10" -> md.get("octobercount").get,"11" -> md.get("novembercount").get, "12" -> md.get("decembercount").get)
+    val mDataRaw = List("01" -> md.get("januarycount").getOrElse("0"), "02" -> md.get("februarycount").getOrElse("0"),"03" -> md.get("marchcount").getOrElse("0"), "04" -> md.get("aprilcount").getOrElse("0"),
+      "05" -> md.get("maycount").getOrElse("0"), "06" -> md.get("junecount").getOrElse("0"), "07" -> md.get("julycount").getOrElse("0"), "08" -> md.get("augustcount").getOrElse("0"), "09" -> md.get("septembercount").getOrElse("0"),
+      "10" -> md.get("octobercount").getOrElse("0"),"11" -> md.get("novembercount").getOrElse("0"), "12" -> md.get("decembercount").getOrElse("0"))
 
     def prepareMonthData(raw: List[(String, String)]): List[(String, String)] = {
       def loop(raw: List[(String, String)], acc: List[(String, String)]): List[(String, String)] = raw match {

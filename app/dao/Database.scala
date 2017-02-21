@@ -16,11 +16,14 @@ trait   Database[T]{
 
 case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
   override def data(code: String, dt: String): Map[String, String] = {
-    println()
+
     val result = client.queryDocuments(s"dbs/$getDATABASE_ID/colls/$getCOLLECTION_ID",
       "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and tyrion.code = \""+code+"\"",null)
       .getQueryIterable.asScala
-      result.head.getHashMap.asScala.map(x => (x._1,x._2.toString)).toMap
+      result.headOption match {
+        case None => Map[String, String]()
+        case Some(x) => x.getHashMap.asScala.map(x => (x._1,x._2.toString)).toMap
+      }
 
   }
 }
