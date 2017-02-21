@@ -22,9 +22,12 @@ case class EPGMDashbordData(gradeData: GradeData,
 
 
 object EPGMDashbordData{
-  def apply(sCode: String): EPGMDashbordData =
-    EPGMDashbordData(GradeData(sCode), GenderData(sCode), AgeData(sCode), MonthData(sCode))
+  def apply(sCode: String, docType: String): EPGMDashbordData ={
+    val md = EPGMDashboardDaoInterface(sCode,docType).data
+    println(md)
+    EPGMDashbordData(GradeData(md), GenderData(md), AgeData(md), MonthData(md))
 
+  }
   /**
     * Converting from Entity to Json while service returning response
     */

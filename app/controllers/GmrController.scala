@@ -10,10 +10,6 @@ import play.api.mvc.{Action, Controller}
   */
 class GmrController extends Controller{
 
-  def gmr = Action {
-    Ok(views.html.gmr("EPGM"))
-  }
-
   def getGMR(awCode: String) = Action(Ok(Json.toJson(ResourceFactory().getGMRDetails(awCode))))
 
 }

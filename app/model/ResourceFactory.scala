@@ -2,14 +2,15 @@ package model
 
 import model.entites.ConsolidatedStateResource
 import model.entites.dashboard.EPGMDashbordData
-import services._
+import services.{GmrHandler, GmrResource}
+
 
 /**
   * Created by kirankumarbs on 11/2/17.
   */
 
 case class ResourceFactory() {
-  def epgmDashboardData(sCode: String): EPGMDashbordData = EPGMDashbordData(sCode)
+  def epgmDashboardData(sCode: String, docType: String): EPGMDashbordData = EPGMDashbordData(sCode, docType)
 
 
   def getSpecificStateDetails(sCode: String):ConsolidatedStateResource  = {

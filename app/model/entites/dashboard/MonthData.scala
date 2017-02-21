@@ -1,6 +1,5 @@
 package model.entites.dashboard
 
-import dao.EPGMDashboardDaoInterface
 import play.api.libs.json.Json
 
 /**
@@ -11,9 +10,9 @@ import play.api.libs.json.Json
   */
 case class MonthData(labels: List[String], datasets: List[Datasets])
 object MonthData{
-  def apply(sCode: String): MonthData =
+  def apply(md: Map[String, String]): MonthData =
   {
-    val md = EPGMDashboardDaoInterface("monthwise"+sCode).data
+
     val mConst = Map("01" -> "Jan","02" -> "Feb","03" -> "Mar","04" -> "Apr","05" -> "May","06" -> "Jun","07" -> "Jul","08" -> "Aug","09" -> "Sep","10" -> "Oct",
       "11" -> "Nov","12" -> "Dec")
     val currDt = md.get("currentmonth").getOrElse("01")

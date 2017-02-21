@@ -1,9 +1,7 @@
 package com.combinators.epgmweb.model
 
-import model.entites._
 import model.entites.dashboard._
 import org.junit.Test
-import org.scalatest.Matchers._
 
 /**
   * Created by kirankumarbs on 14/2/17.
@@ -22,19 +20,19 @@ class EPGMDashboardDataTest {
         List(Datasets("rgba(151,187,205,0.5)",
           "rgba(151,187,205,1)",List(100, 80, 60, 55, 40, 35, 30, 25, 20, 15, 15, 5)))))*/
     //when
-    val actual = EPGMDashbordData(sCode)
+    val actual = EPGMDashbordData(sCode,"dashboard")
     println(actual)
     //then
     //actual shouldBe expected
   }
 
-  @Test
+/*  @Test
   def itShouldGiveGradeDataForState1(): Unit ={
     //given
     val sCode = "27"
     val expected = GradeData(101,20,21,60)
     //when
-    val actual = GradeData(sCode)
+    val actual = GradeData(sCode,"dashboard")
     //then
     actual shouldBe expected
   }
@@ -44,7 +42,7 @@ class EPGMDashboardDataTest {
     val sCode = "27"
     //val expected =
     //when
-    val actual = MonthData(sCode)
+    val actual = MonthData(sCode,"dashboard")
     println(actual)
     //then
     //actual shouldBe expected
@@ -72,5 +70,5 @@ class EPGMDashboardDataTest {
     println(actual)
     //then
     //actual shouldBe expected
-  }
+  }*/
 }

@@ -11,12 +11,11 @@ GET     /epgm/consolidatedstatelevel/:stateCode     controllers.StateDetailsCont
 
 # Service for Growth Monitoring Report
 GET     /epgm/gmr/:awCode                              controllers.GmrController.getGMR(awCode)
-GET     /epgm/gmr/                                     controllers.GmrController.gmr
 
 
 
 # EPGM Dashboard Aggregated Data
-GET     /epgm/dashboard/:stateCode     controllers.EPGMDashboardInitController.get(stateCode)
+GET     /epgm/:dashboard/:stateCode     controllers.EPGMDashboardInitController.get(stateCode,dashboard)
 
 
 # Map static resources from the /public folder to the /assets URL path

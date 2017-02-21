@@ -9,9 +9,10 @@ trait EPGMDashboardDaoInterface{
 }
 
 object EPGMDashboardDaoInterface{
-  def apply(code: String): EPGMDashboardDaoInterface = EPGMDashboardDao[JedisDB](code)
+  type DB = DocumentDB
+  def apply(code: String, docType: String): EPGMDashboardDaoInterface = EPGMDashboardDao[DB](code, docType)
 }
 
-case class EPGMDashboardDao[T](code: String)(implicit db: Database[T]) extends EPGMDashboardDaoInterface{
-  def data   = db.data(code)
+case class EPGMDashboardDao[T](code: String, docType: String)(implicit db: Database[T]) extends EPGMDashboardDaoInterface{
+  def data   = db.data(code, docType)
 }

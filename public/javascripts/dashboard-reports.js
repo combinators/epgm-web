@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.ajax({
 //        url: "http://epgm-webapp.centralindia.cloudapp.azure.com:8080/epgm/dashboard/27"
-    url: "http://localhost:8080/epgm/dashboard/27"
+    url: "http://epgm-webapp.cloudapp.net:8080/epgm/dashboard/27"
     }).then(function(data) {
 
 /*    countUp(data.grade_data.total);

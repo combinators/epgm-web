@@ -32,7 +32,7 @@ class ResourceFactoryTest {
     //given
     val sCode = "27"
     //when
-    val actual = ResourceFactory().epgmDashboardData(sCode)
+    val actual = ResourceFactory().epgmDashboardData(sCode,"dashboard")
     //then
   }
 

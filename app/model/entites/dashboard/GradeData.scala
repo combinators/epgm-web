@@ -10,8 +10,8 @@ import play.api.libs.json.Json
 case class GradeData(total: Int, severe: Int, moderate: Int, normal: Int)
 
 object GradeData {
-  def apply(code: String): GradeData = {
-    val gd = EPGMDashboardDaoInterface("gradewise"+code).data
+  def apply(gd: Map[String, String]): GradeData = {
+    //val gd = EPGMDashboardDaoInterface("gradewise"+code).data
 
     GradeData(gd.get("totalcount").getOrElse("0").toInt
       ,gd.get("suwcount").getOrElse("0").toInt

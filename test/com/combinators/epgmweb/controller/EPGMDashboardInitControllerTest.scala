@@ -10,7 +10,7 @@ class EPGMDashboardInitControllerTest {
 
   @Test
   def itShouldGetEPGMDashboardInitData(): Unit ={
-    println(new EPGMDashboardInitController().get("27"))
+    println(new EPGMDashboardInitController().get("27","dashboard"))
   }
 
 }

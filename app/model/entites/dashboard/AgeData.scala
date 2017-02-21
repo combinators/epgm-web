@@ -1,6 +1,5 @@
 package model.entites.dashboard
 
-import dao.EPGMDashboardDaoInterface
 import play.api.libs.json.Json
 
 /**
@@ -10,10 +9,8 @@ import play.api.libs.json.Json
 case class AgeData(value: Int, color: String)
 
 object AgeData {
-  def apply(sCode: String): List[AgeData] =
+  def apply(ad: Map[String, String]): List[AgeData] =
     {
-      val ad = EPGMDashboardDaoInterface("agewise"+sCode).data
-
       AgeData(ad.get("zerotoonecount").getOrElse("0").toInt, "#ff3333") ::
         AgeData(ad.get("onetotwocount").getOrElse("0").toInt, "#ffaa00") ::
         AgeData(ad.get("twotothreecount").getOrElse("0").toInt, "#d2a679") ::
