@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Dashboard for Aanganwadi">
         <meta name="author" content="Combinators">
-        <!-- <meta http-equiv="refresh" content="10"> -->
+        <meta http-equiv="refresh" content="10">
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap.min.css">
         <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap-reset.css">
@@ -184,6 +184,8 @@
                                 </header>
                                 <div class="panel-body text-center">
                                     <canvas id="doughnut" height="300" width="200"></canvas>
+                                    <span class="label label-male">Male</span>
+                                    <span class="label label-female">Female</span>
                                 </div>
                             </section>
                         </div>
@@ -225,6 +227,7 @@
         </footer>
         <!--footer end-->
     </section>
+        </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/javascripts/jquery.js"></script>
@@ -264,18 +267,6 @@
 			  autoPlay:true
 
           });
-
-      $('#gmr').DataTable( {
-        "ajax": "http://localhost:8080/assets/data/objects.txt",
-        "columns": [
-            { "data": "name" },
-            { "data": "position" },
-            { "data": "office" },
-            { "data": "extn" },
-            { "data": "start_date" },
-            { "data": "salary" }
-        ]
-    } );
       });
 
       //custom select box

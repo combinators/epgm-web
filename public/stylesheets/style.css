@@ -6224,3 +6224,19 @@ header.blue-bg .search:focus {
 .note-editor .note-editable ul li {
     list-style: disc;
 }
+
+.label-male {
+  background-color: #ccd1d1;
+}
+.label-male[href]:hover,
+.label-male[href]:focus {
+  background-color: #5e5e5e;
+}
+
+.label-female {
+  background-color: #566573;
+}
+.label-female[href]:hover,
+.label-female[href]:focus {
+  background-color: #5e5e5e;
+}

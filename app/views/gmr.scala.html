@@ -118,7 +118,7 @@
     <section id="main-content">
         <section class="wrapper">
 
-            <select id="aanganwadi" onchange="populateGMR(this);">
+            <select id="aanganwadi" onchange="populateGMR(this)">
                 <option value="27511010507">PIMPALGAO 2</option>
                 <option value="27511010509">PIMPALGAO 4</option>
                 <option value="27511010209">YELEGOAN (1)</option>
@@ -205,8 +205,11 @@
 <script>
 
       function populateGMR(aw){
-        $('#gmr').DataTable( {
-            "ajax": "http://localhost:8080/epgm/gmreport/"+aw.value,
+      $("#gmr").dataTable().fnDestroy()
+
+          $('#gmr').DataTable( {
+            "ajax": "http://epgm-webapp.cloudapp.net:8080/epgm/gmreport/"+aw.value,
+            //"ajax": "http://localhost:8080/epgm/gmreport/"+aw.value,
             "columns": [
                 { "data": "code" },
                 { "data": "name" },
@@ -221,6 +224,7 @@
         } );
       }
 
+
       //owl carousel
 
       $(document).ready(function() {
@@ -232,6 +236,22 @@
 			  autoPlay:true
 
           });
+
+          $('#gmr').DataTable( {
+            //"ajax": "http://epgm-webapp.cloudapp.net:8080/epgm/gmreport/"+aw.value,
+            "ajax": "http://localhost:8080/epgm/gmreport/27511010507",
+            "columns": [
+                { "data": "code" },
+                { "data": "name" },
+                { "data": "surname" },
+                { "data": "gender" },
+                { "data": "dob" },
+                { "data": "class" },
+                { "data": "logDates" },
+                { "data": "weights" },
+                { "data": "whoGrades" },
+            ]
+        } );
 
       });
 
