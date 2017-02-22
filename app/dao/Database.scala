@@ -1,5 +1,6 @@
 package dao
 import com.microsoft.azure.documentdb.DocumentClient
+import constants.WHOConstants
 
 import scala.collection.JavaConverters._
 import dao.DBConfigFactory._
@@ -43,9 +44,9 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
           d.get("sex").toString,
           d.get("dayofbirth").toString +"-"+d.get("monthofbirth").toString +"-"+d.get("yearofbirth").toString,
           d.get("category").toString,
-          d.get("year").toString +d.get("month").toString +d.get("day").toString,
+          d.get("year").toString +d.get("month").toString +d.get("day").toString+d.get("hours").toString+d.get("minutes").toString,
           d.get("weight").toString,
-          d.get("whounderweight").toString))
+          WHOConstants(d.get("whounderweight").toString)))
 
     resultGroupedByChild match {
       case Nil => List()

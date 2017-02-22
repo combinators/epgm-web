@@ -208,8 +208,8 @@
       $("#gmr").dataTable().fnDestroy()
 
           $('#gmr').DataTable( {
-            "ajax": "http://epgm-webapp.cloudapp.net:8080/epgm/gmreport/"+aw.value,
-            //"ajax": "http://localhost:8080/epgm/gmreport/"+aw.value,
+            //"ajax": "http://epgm-webapp.cloudapp.net:8080/epgm/gmreport/"+aw.value,
+            "ajax": "http://localhost:8080/epgm/gmreport/"+aw.value,
             "columns": [
                 { "data": "code" },
                 { "data": "name" },
