@@ -1,18 +1,23 @@
 package dao
 
+import services.GmrResourceUpdated
+
 /**
   * Created by kirankumarbs on 14/2/17.
   */
 
-trait EPGMDashboardDaoInterface{
-  def data: Map[String, String]
+trait EPGMDaoInterface{
+  def dashboardData: Map[String, String]
+  def gmrData: List[GmrResourceUpdated]
 }
 
-object EPGMDashboardDaoInterface{
+object EPGMDaoInterface{
   type DB = DocumentDB
-  def apply(code: String, docType: String): EPGMDashboardDaoInterface = EPGMDashboardDao[DB](code, docType)
+  def apply(code: String, docType: String): EPGMDaoInterface = EPGMDao[DB](code, docType)
 }
 
-case class EPGMDashboardDao[T](code: String, docType: String)(implicit db: Database[T]) extends EPGMDashboardDaoInterface{
-  def data   = db.data(code, docType)
+private case class EPGMDao[T](code: String, docType: String)(implicit db: Database[T]) extends EPGMDaoInterface{
+  def dashboardData   = db.dashboardData(code, docType)
+
+  override def gmrData: List[GmrResourceUpdated] = db.gmrData(code, docType)
 }

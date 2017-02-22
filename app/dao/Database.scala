@@ -1,7 +1,9 @@
 package dao
 import com.microsoft.azure.documentdb.DocumentClient
+
 import scala.collection.JavaConverters._
 import dao.DBConfigFactory._
+import services.GmrResourceUpdated
 
 
 
@@ -10,12 +12,13 @@ import dao.DBConfigFactory._
   */
 
 trait   Database[T]{
-  def data(code: String, dt: String): Map[String, String]
+  def dashboardData(code: String, dt: String): Map[String, String]
+  def gmrData(code: String, dt: String): List[GmrResourceUpdated]
   //def set(code: String, values: util.Map[String, String])
 }
 
 case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
-  override def data(code: String, dt: String): Map[String, String] = {
+  override def dashboardData(code: String, dt: String): Map[String, String] = {
 
     val result = client.queryDocuments(s"dbs/$getDATABASE_ID/colls/$getCOLLECTION_ID",
       "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and tyrion.code = \""+code+"\"",null)
@@ -26,10 +29,33 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
       }
 
   }
+
+  override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = {
+    val result = client.queryDocuments(s"dbs/$getDATABASE_ID/colls/$getCOLLECTION_ID",
+      "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and  tyrion.aanganwadicode= \""+code+"\" order by tyrion.childcode asc",null)
+      .getQueryIterable.asScala.toList
+
+    val resultGroupedByChild =
+      result.map(d =>
+        GmrResourceUpdated(d.get("childcode").toString,
+          d.get("name").toString,
+          d.get("fathername").toString,
+          d.get("sex").toString,
+          d.get("dayofbirth").toString +"-"+d.get("monthofbirth").toString +"-"+d.get("yearofbirth").toString,
+          d.get("category").toString,
+          d.get("year").toString +d.get("month").toString +d.get("day").toString,
+          d.get("weight").toString,
+          d.get("whounderweight").toString))
+
+    resultGroupedByChild match {
+      case Nil => List()
+      case xs => xs
+    }
+  }
 }
 
 case class DocumentDBMock() extends Database[DocumentDBMock] {
-  override def data(code: String, dt: String): Map[String, String] = {
+  override def dashboardData(code: String, dt: String): Map[String, String] = {
     Map("doctype" -> "dashboard",
       "code" -> "27",
       "totalcount" -> "10000",
@@ -59,4 +85,5 @@ case class DocumentDBMock() extends Database[DocumentDBMock] {
       "currentmonth" -> "02",
       "currentyear" -> "17")  }
 
+  override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = List()
 }

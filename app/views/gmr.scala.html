@@ -1,0 +1,252 @@
+@*
+* This template is called from the `index` template. This template
+* handles the rendering of the page header and body tags. It takes
+* two arguments, a `String` for the title of the page and an `Html`
+* object to insert into the body of the page.
+*@
+@(title: String)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @* Here's where we render the page title `String`. *@
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard for Aanganwadi">
+    <meta name="author" content="Combinators">
+    <!-- <meta http-equiv="refresh" content="10"> -->
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap-reset.css">
+    <link href="assets/stylesheets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/stylesheets/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" media="screen" href="assets/stylesheets/slidebars.css">
+    <link rel="stylesheet" media="screen" href="assets/stylesheets/style.css">
+    <link rel="stylesheet" href="assets/stylesheets/style-responsive.css" >
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/javascripts/html5shiv.js"></script>
+    <script src="assets/javascripts/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+</head>
+<body>
+
+<section id="container" >
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <i class="fa fa-bars"></i>
+        </div>
+        <!--logo start-->
+        <a href="/" class="logo">EPGM</span></a>
+        <!--logo end-->
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <!-- notification dropdown start-->
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge bg-warning">3</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-yellow"></div>
+                        <li>
+                            <p class="yellow">You have 3 new notifications</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                Child is added.
+                                <span class="small italic">Normal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                Child is added.
+                                <span class="small italic">Severe</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                Child is added.
+                                <span class="small italic">Normal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">See all notifications</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- notification dropdown end -->
+            </ul>
+            <!--  notification end -->
+        </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a class="active" href="@routes.HomeController.index">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="@routes.GmrController.displayGMR" >
+                        <i class=" fa fa-bar-chart-o"></i>
+                        <span>GMR</span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <section id="main-content">
+        <section class="wrapper">
+
+            <select id="aanganwadi" onchange="populateGMR(this);">
+                <option value="27511010507">PIMPALGAO 2</option>
+                <option value="27511010509">PIMPALGAO 4</option>
+                <option value="27511010209">YELEGOAN (1)</option>
+                <option value="27511010211">YELEGOAN (3)</option>
+                <option value="27511010406">KONDHA 3</option>
+                <option value="27511010407">KONDHA 4</option>
+                <option value="27511010109">LAHAN 4</option>
+                <option value="27511010111">LAHAN 6</option>
+                <option value="27511010305">MALEGAON-3</option>
+                <option value="27511010306">MALEGAON-4</option>
+
+            </select>
+
+            <table id="gmr" class="display" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>M/F</th>
+                    <th>D-O-B</th>
+                    <th>Class</th>
+                    <th>Log date</th>
+                    <th>Weight</th>
+                    <th>WHO</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>M/F</th>
+                    <th>D-O-B</th>
+                    <th>Class</th>
+                    <th>Log date</th>
+                    <th>Weight</th>
+                    <th>WHO</th>
+                </tr>
+                </tfoot>
+            </table>
+        </section>
+    </section>
+
+    <!--main content end-->
+
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">
+            2017 &copy; EPGM by Sthapana.
+            <a href="#" class="go-top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+        </div>
+    </footer>
+    <!--footer end-->
+</section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="assets/javascripts/jquery.js"></script>
+<script src="assets/javascripts/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="assets/javascripts/jquery.dcjqaccordion.2.7.js"></script>
+<script src="assets/javascripts/jquery.scrollTo.min.js"></script>
+<script src="assets/javascripts/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="assets/javascripts/jquery.sparkline.js" type="text/javascript"></script>
+<script src="assets/javascripts/jquery.easy-pie-chart.js"></script>
+<script src="assets/javascripts/owl.carousel.js" ></script>
+<script src="assets/javascripts/jquery.customSelect.min.js" ></script>
+<script src="assets/javascripts/respond.min.js" ></script>
+<script src="assets/javascripts/Chart.js"></script>
+
+<!--right slidebar-->
+<script src="assets/javascripts/slidebars.min.js"></script>
+
+<!--common script for all pages-->
+<script src="assets/javascripts/common-scripts.js"></script>
+
+<!--script for this page-->
+<script src="assets/javascripts/sparkline-chart.js"></script>
+<script src="assets/javascripts/easy-pie-chart.js"></script>
+<script src="assets/javascripts/dashboard-reports.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script>
+
+      function populateGMR(aw){
+        $('#gmr').DataTable( {
+            "ajax": "http://localhost:8080/epgm/gmreport/"+aw.value,
+            "columns": [
+                { "data": "code" },
+                { "data": "name" },
+                { "data": "surname" },
+                { "data": "gender" },
+                { "data": "dob" },
+                { "data": "class" },
+                { "data": "logDates" },
+                { "data": "weights" },
+                { "data": "whoGrades" },
+            ]
+        } );
+      }
+
+      //owl carousel
+
+      $(document).ready(function() {
+          $("#owl-demo").owlCarousel({
+              navigation : true,
+              slideSpeed : 300,
+              paginationSpeed : 400,
+              singleItem : true,
+			  autoPlay:true
+
+          });
+
+      });
+
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+      $(window).on("resize",function(){
+          var owl = $("#owl-demo").data("owlCarousel");
+          owl.reinit();
+      });
+
+  </script>
+
+</body>
+</html>

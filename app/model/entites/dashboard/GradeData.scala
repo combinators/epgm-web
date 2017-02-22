@@ -1,6 +1,6 @@
 package model.entites.dashboard
 
-import dao.EPGMDashboardDaoInterface
+import dao.EPGMDaoInterface$
 import play.api.libs.json.Json
 
 /**

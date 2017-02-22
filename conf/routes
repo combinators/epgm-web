@@ -11,6 +11,8 @@ GET     /epgm/consolidatedstatelevel/:stateCode     controllers.StateDetailsCont
 
 # Service for Growth Monitoring Report
 GET     /epgm/gmr/:awCode                              controllers.GmrController.getGMR(awCode)
+GET     /epgm/gmreport/:awCode                         controllers.GmrController.getGMRUpdated(awCode)
+GET     /gmr                                           controllers.GmrController.displayGMR
 
 
 

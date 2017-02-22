@@ -1,6 +1,6 @@
 package model.entites.dashboard
 
-import dao.EPGMDashboardDaoInterface
+import dao._
 import play.api.libs.json._
 
 /**
@@ -23,7 +23,7 @@ case class EPGMDashbordData(gradeData: GradeData,
 
 object EPGMDashbordData{
   def apply(sCode: String, docType: String): EPGMDashbordData ={
-    val md = EPGMDashboardDaoInterface(sCode,docType).data
+    val md = EPGMDaoInterface(sCode,docType).dashboardData
     println(md)
     EPGMDashbordData(GradeData(md), GenderData(md), AgeData(md), MonthData(md))
 

@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Dashboard for Aanganwadi">
         <meta name="author" content="Combinators">
-         <meta http-equiv="refresh" content="10">
+        <!-- <meta http-equiv="refresh" content="10"> -->
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap.min.css">
         <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap-reset.css">
@@ -23,6 +23,7 @@
         <link rel="stylesheet" media="screen" href="assets/stylesheets/slidebars.css">
         <link rel="stylesheet" media="screen" href="assets/stylesheets/style.css">
         <link rel="stylesheet" href="assets/stylesheets/style-responsive.css" >
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
         <!--[if lt IE 9]>
@@ -96,27 +97,17 @@
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
                     <li>
-                        <a class="active" href="/">
+                        <a class="active" href="@routes.HomeController.index">
                             <i class="fa fa-dashboard"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a href="/" >
+                        <a href="@routes.GmrController.displayGMR" >
                             <i class=" fa fa-bar-chart-o"></i>
                             <span>GMR</span>
                         </a>
                     </li>
-          <!--          <li class="sub-menu">
-                        <a href="javascript:;" >
-                            <i class="fa fa-th"></i>
-                            <span>Data Tables</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a  href="basic_table.html">Basic Table</a></li>
-                            <li><a  href="responsive_table.html">Responsive Table</a></li>
-                        </ul>
-                    </li>-->
 
                 </ul>
                 <!-- sidebar menu end-->
@@ -221,92 +212,6 @@
                 </div>
                 <!-- page end-->
 
-<!--
-                <div class="row">
-                    <div class="col-lg-12">
-                        &lt;!&ndash;Health Monitoring Report Chart Start&ndash;&gt;
-                        <section class="panel">
-                            <header class="panel-heading">
-                                Health Monitoring Report
-                            </header>
-                            <div class="panel-body">
-                                <section id="flip-scroll">
-                                    <table class="table table-bordered table-striped table-condensed cf">
-                                        <thead class="cf">
-                                        <tr>
-                                            <th>Code</th>
-                                            <th>Name</th>
-                                            <th>Surname</th>
-                                            <th>M/F</th>
-                                            <th>D-O-B</th>
-                                            <th>Class</th>
-                                            <th>Log date</th>
-                                            <th>Weight</th>
-                                            <th>WHO</th>
-                                            <th>Weight_Add</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>GANESH</td>
-                                            <td>A AKHADE</td>
-                                            <td>M</td>
-                                            <td>8-Feb-2008</td>
-                                            <td></td>
-                                            <td>11-Feb-2014</td>
-                                            <td>19.745</td>
-                                            <td>NOR</td>
-                                            <td>0</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>GANESH</td>
-                                            <td>A AKHADE</td>
-                                            <td>M</td>
-                                            <td>8-Feb-2008</td>
-                                            <td></td>
-                                            <td>11-Feb-2014</td>
-                                            <td>19.745</td>
-                                            <td>NOR</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>GANESH</td>
-                                            <td>A AKHADE</td>
-                                            <td>M</td>
-                                            <td>8-Feb-2008</td>
-                                            <td></td>
-                                            <td>11-Feb-2014</td>
-                                            <td>19.745</td>
-                                            <td>NOR</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>GANESH</td>
-                                            <td>A AKHADE</td>
-                                            <td>M</td>
-                                            <td>8-Feb-2008</td>
-                                            <td></td>
-                                            <td>11-Feb-2014</td>
-                                            <td>19.745</td>
-                                            <td>NOR</td>
-                                            <td>0</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </section>
-                            </div>
-                            &lt;!&ndash;Health Monitoring Report Chart end&ndash;&gt;
-                        </section>
-                    </div>
-                </div>-->
-
-            </section>
-        </section>
         <!--main content end-->
 
         <!--footer start-->
@@ -344,6 +249,8 @@
     <script src="assets/javascripts/sparkline-chart.js"></script>
     <script src="assets/javascripts/easy-pie-chart.js"></script>
     <script src="assets/javascripts/dashboard-reports.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script>
 
       //owl carousel
@@ -357,9 +264,25 @@
 			  autoPlay:true
 
           });
+
+      $('#gmr').DataTable( {
+        "ajax": "http://localhost:8080/assets/data/objects.txt",
+        "columns": [
+            { "data": "name" },
+            { "data": "position" },
+            { "data": "office" },
+            { "data": "extn" },
+            { "data": "start_date" },
+            { "data": "salary" }
+        ]
+    } );
       });
 
       //custom select box
+
+      function displayDashboard() {
+            return
+        }
 
       $(function(){
           $('select.styled').customSelect();

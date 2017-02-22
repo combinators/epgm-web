@@ -2,7 +2,7 @@ package model
 
 import model.entites.ConsolidatedStateResource
 import model.entites.dashboard.EPGMDashbordData
-import services.{GmrHandler, GmrResource}
+import services.{GmrHandler, GmrResource, GmrResourceData, GmrResourceUpdated}
 
 
 /**
@@ -20,6 +20,7 @@ case class ResourceFactory() {
     new WHOIndexedDataModel().create(None,"dashboard").head
   }
 
+  def getGMRDetailsUpdated(awCode: String):GmrResourceData = new GmrHandler().createGMR(awCode)
   def getGMRDetails(awCode: String):List[GmrResource] = new GmrHandler().create(awCode)
 
 
