@@ -786,7 +786,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .state-overview .yellow {
-    background:  #e67e22;
+    background:  #f8d347;
 }
 
 .state-overview .blue {
@@ -6225,6 +6225,8 @@ header.blue-bg .search:focus {
     list-style: disc;
 }
 
+/* Donut Chart label */
+
 .label-male {
   background-color: #ccd1d1;
 }
@@ -6240,3 +6242,4 @@ header.blue-bg .search:focus {
 .label-female[href]:focus {
   background-color: #5e5e5e;
 }
+
