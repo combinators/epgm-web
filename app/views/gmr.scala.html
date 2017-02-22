@@ -37,82 +37,10 @@
 
 <section id="container" >
     <!--header start-->
-    <header class="header white-bg">
-        <div class="sidebar-toggle-box">
-            <i class="fa fa-bars"></i>
-        </div>
-        <!--logo start-->
-        <a href="/" class="logo">EPGM</span></a>
-        <!--logo end-->
-        <div class="nav notify-row" id="top_menu">
-            <!--  notification start -->
-            <ul class="nav top-menu">
-                <!-- notification dropdown start-->
-                <li id="header_notification_bar" class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
-                        <i class="fa fa-bell-o"></i>
-                        <span class="badge bg-warning">3</span>
-                    </a>
-                    <ul class="dropdown-menu extended notification">
-                        <div class="notify-arrow notify-arrow-yellow"></div>
-                        <li>
-                            <p class="yellow">You have 3 new notifications</p>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                Child is added.
-                                <span class="small italic">Normal</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                Child is added.
-                                <span class="small italic">Severe</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                Child is added.
-                                <span class="small italic">Normal</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">See all notifications</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- notification dropdown end -->
-            </ul>
-            <!--  notification end -->
-        </div>
-    </header>
+    @header()
     <!--header end-->
     <!--sidebar start-->
-    <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a class="active" href="@routes.HomeController.index">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="sub-menu">
-                    <a href="@routes.GmrController.displayGMR" >
-                        <i class=" fa fa-bar-chart-o"></i>
-                        <span>GMR</span>
-                    </a>
-                </li>
-
-            </ul>
-            <!-- sidebar menu end-->
-        </div>
-    </aside>
+    @sidebar()
     <!--sidebar end-->
 
     <section id="main-content">
@@ -166,14 +94,7 @@
     <!--main content end-->
 
     <!--footer start-->
-    <footer class="site-footer">
-        <div class="text-center">
-            2017 &copy; EPGM by Sthapana.
-            <a href="#" class="go-top">
-                <i class="fa fa-angle-up"></i>
-            </a>
-        </div>
-    </footer>
+    @footer()
     <!--footer end-->
 </section>
 
@@ -222,6 +143,9 @@
                 { "data": "whoGrades" },
             ]
         } );
+
+
+
       }
 
 

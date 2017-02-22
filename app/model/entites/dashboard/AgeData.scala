@@ -14,9 +14,7 @@ object AgeData {
         AgeData(ad.get("zerotoonecount").getOrElse("0").toInt,  "#a1887f") ::
         AgeData(ad.get("onetotwocount").getOrElse("0").toInt,   "#bb8fce") ::
         AgeData(ad.get("twotothreecount").getOrElse("0").toInt, "#ccd1d1") ::
-        AgeData(ad.get("threetofourcount").getOrElse("0").toInt,"#f7dc6f") ::
-        AgeData(ad.get("fourtofivecount").getOrElse("0").toInt, "#7fb3d5") ::
-        AgeData(ad.get("fivetosixcount").getOrElse("0").toInt,  "#7dcea0") ::  Nil
+        AgeData(ad.get("threetofourcount").getOrElse("0").toInt,"#f7dc6f") :: Nil
     }
   def apply(ads: List[AgeData]) = ads.map(ad => Json.obj("value" -> ad.value, "color" -> ad.color))
 }
