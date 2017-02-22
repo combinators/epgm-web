@@ -11,12 +11,12 @@ case class AgeData(value: Int, color: String)
 object AgeData {
   def apply(ad: Map[String, String]): List[AgeData] =
     {
-      AgeData(ad.get("zerotoonecount").getOrElse("0").toInt, "#ff3333") ::
-        AgeData(ad.get("onetotwocount").getOrElse("0").toInt, "#ffaa00") ::
-        AgeData(ad.get("twotothreecount").getOrElse("0").toInt, "#d2a679") ::
-        AgeData(ad.get("threetofourcount").getOrElse("0").toInt, "#99ff33") ::
-        AgeData(ad.get("fourtofivecount").getOrElse("0").toInt, "#8cd9b3") ::
-        AgeData(ad.get("fivetosixcount").getOrElse("0").toInt, "#0080ff") ::  Nil
+        AgeData(ad.get("zerotoonecount").getOrElse("0").toInt,  "#a1887f") ::
+        AgeData(ad.get("onetotwocount").getOrElse("0").toInt,   "#bb8fce") ::
+        AgeData(ad.get("twotothreecount").getOrElse("0").toInt, "#ccd1d1") ::
+        AgeData(ad.get("threetofourcount").getOrElse("0").toInt,"#f7dc6f") ::
+        AgeData(ad.get("fourtofivecount").getOrElse("0").toInt, "#7fb3d5") ::
+        AgeData(ad.get("fivetosixcount").getOrElse("0").toInt,  "#7dcea0") ::  Nil
     }
   def apply(ads: List[AgeData]) = ads.map(ad => Json.obj("value" -> ad.value, "color" -> ad.color))
 }

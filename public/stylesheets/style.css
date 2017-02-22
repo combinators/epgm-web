@@ -778,15 +778,19 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .state-overview .red {
-    background: #ff6c60;
+    background:  #cb4335;
+}
+
+.state-overview .green {
+    background:  #239b56;
 }
 
 .state-overview .yellow {
-    background: #f8d347;
+    background:  #e67e22;
 }
 
 .state-overview .blue {
-    background: #57c8f2;
+    background: #2874a6;
 }
 
 /*main chart*/

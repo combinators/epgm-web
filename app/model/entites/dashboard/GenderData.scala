@@ -14,7 +14,7 @@ object GenderData {
     //val gd = EPGMDashboardDaoInterface("genderwise"+sCode).data
     val male = gd.get("malecount").getOrElse("0").toInt
     val female = gd.get("femalecount").getOrElse("0").toInt
-    GenderData(male, "#9D9B7F") :: GenderData(female, "#4D5360") :: Nil
+    GenderData(male, "#ccd1d1") :: GenderData(female, "#566573") :: Nil
   }
   def apply(gds: List[GenderData]) = gds.map(gd => Json.obj("value" -> gd.value, "color" -> gd.color))
 }
