@@ -9,10 +9,10 @@ $(document).ready(function() {
     countUp3(data.grade_data.moderate);
     countUp4(data.grade_data.normal);*/
 
-    $('.count').text(data.grade_data.total)
-    $('.count2').text(data.grade_data.severe)
-    $('.count3').text(data.grade_data.moderate)
-    $('.count4').text(data.grade_data.normal)
+    $('.count').text(data.grade_data.total).css("color", "black");
+    $('.count2').text(data.grade_data.severe).css("color", "black");
+    $('.count3').text(data.grade_data.moderate).css("color", "black");
+    $('.count4').text(data.grade_data.normal).css("color", "black");
 
     new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(data.gender_data);
     new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(data.age_data);

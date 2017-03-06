@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)
+@(title: String)(content: Html)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,12 +39,9 @@
         <!--header start-->
         @header()
         <!--header end-->
-        <!--sidebar start-->
-        @sidebar()
-        <!--sidebar end-->
-        <!-- Dashboard Aggregation Start -->
-        @dashboard()
-        <!-- Dashboard Aggregation End -->
+        <!--Main Content Start -->
+        @content
+        <!-- Main Content End -->
         <!--footer start-->
         @footer()
     </section>

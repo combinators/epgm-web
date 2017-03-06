@@ -6225,6 +6225,12 @@ header.blue-bg .search:focus {
     list-style: disc;
 }
 
+/* Grade Report */
+
+.count-label {
+    color: #0f0f0f;
+}
+
 /* Donut Chart label */
 
 .label-male {

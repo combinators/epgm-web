@@ -17,8 +17,7 @@ case class GmrResource
    cclass:String,
    logDates:List[String],
    weights:List[Double],
-   whoGrades:List[String],
-   weightsToBeAdded:List[Double]
+   whoGrades:List[WHOConstants.WHO]
   )
 
 case class GmrResourceData(data: List[GmrResourceUpdated])
@@ -57,8 +56,7 @@ object GmrResource {
       "class" -> gmr.cclass,
       "logDates" -> gmr.logDates,
       "weights" ->  gmr.weights,
-      "whoGrades" ->  gmr.whoGrades,
-      "weightsToBeAdded" ->  gmr.weightsToBeAdded)
+      "whoGrades" ->  gmr.whoGrades.map(w => w.toString))
     }
   }
 
@@ -179,9 +177,26 @@ class GmrHandler {
 
   private def createGmrResource(awCode: String): List[GmrResource] = {
 
-    GmrResource(
+    /*GmrResource(
       1,"GANESH", "A KHADE", "M", "08/24/2014","OBC",
       List("08/13/2016","07/08/2016","06/10/2016"),
-      List(14.140,13.975,13.745), List("SUW","MUW","MUW"),List(0.759,1.025,1.045)) :: Nil
+      List(14.140,13.975,13.745), List("SUW","MUW","MUW")) :: Nil*/
+
+    val gmrData = createGmrResourceUpdated(awCode)
+
+    gmrData.groupBy(g => g.code).map(gu =>
+      GmrResource(
+        gu._2.head.code.toInt,
+        gu._2.head.name,
+        gu._2.head.surname,
+        gu._2.head.gender,
+        gu._2.head.dob,
+        gu._2.head.cclass,
+        gu._2.map(gr => gr.logDates),
+        gu._2.map(gr => gr.weights.toDouble),
+        gu._2.map(gr => gr.whoGrades)
+      )
+    ).toList
+
   }
 }

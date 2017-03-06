@@ -8,14 +8,14 @@ object WHOConstants {
     case "0" => NORMAL
     case "1" => MUW
     case "2" => SUW
-    case _   => INVALID
+    case _   => NA
   }
 
   trait WHO
   private case object SUW extends WHO
   private case object MUW extends WHO
   private case object NORMAL extends WHO
-  private case object INVALID extends WHO
+  private case object NA extends WHO
 
 
 
@@ -24,7 +24,7 @@ object WHOConstants {
       case NORMAL => 0
       case MUW => 1
       case SUW => 2
-      case INVALID => 7
+      case NA => 7
     }
   }
 }

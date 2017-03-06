@@ -14,7 +14,7 @@ class GmrController extends Controller{
   def getGMRUpdated(awCode: String) = Action(Ok(Json.toJson(ResourceFactory().getGMRDetailsUpdated(awCode))))
 
   def displayGMR =  Action {
-    Ok(views.html.gmr("EPGM"))
+    Ok(views.html.gmr("ICDS"))
   }
 
 }

@@ -1,5 +1,6 @@
 package dao
 
+import constants.WHOConstants
 import services.GmrResource
 
 /**
@@ -17,7 +18,7 @@ class DocumentDBDao {
     GmrResource(
       1,"GANESH", "A KHADE", "M", "08/24/2014","OBC",
       List("08/13/2016","07/08/2016","06/10/2016"),
-      List(14.140,13.975,13.745), List("SUW","MUW","MUW"),List(0.759,1.025,1.045)) :: Nil
+      List(14.140,13.975,13.745), List(WHOConstants("0"))) :: Nil
   }
 
 }
