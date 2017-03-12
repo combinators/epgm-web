@@ -1,3 +1,4 @@
+@()(implicit m: Messages)
 <div class="row state-overview">
     <div class="col-lg-3 col-sm-6">
         <section class="panel">
@@ -8,7 +9,7 @@
                 <h1 class="count">
                     0
                 </h1>
-                <p><label class="count-label">Weighed</label></p>
+                <p><label class="count-label">@Messages("chart.grade.weighed")</label></p>
             </div>
         </section>
     </div>
@@ -21,7 +22,7 @@
                 <h1 class=" count2">
                     0
                 </h1>
-                <p><label class="count-label">Severly</label></p>
+                <p><label class="count-label">@Messages("chart.grade.severly")</label></p>
             </div>
         </section>
     </div>
@@ -34,7 +35,7 @@
                 <h1 class=" count3">
                     0
                 </h1>
-                <p><label class="count-label">Moderate</label></p>
+                <p><label class="count-label">@Messages("chart.grade.moderately")</label></p>
             </div>
         </section>
     </div>
@@ -47,7 +48,7 @@
                 <h1 class=" count4">
                     0
                 </h1>
-                <p><label class="count-label">Normal</label></p>
+                <p><label class="count-label">@Messages("chart.grade.normal")</label></p>
             </div>
         </section>
     </div>

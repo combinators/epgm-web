@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit m: Messages)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Dashboard for Aanganwadi">
         <meta name="author" content="Combinators">
-        <meta http-equiv="refresh" content="10">
+        <!--<meta http-equiv="refresh" content="10"> -->
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap.min.css">
         <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap-reset.css">

@@ -17,5 +17,14 @@ libraryDependencies += "net.debasishg" %% "redisclient" % "3.3"
 libraryDependencies += "redis.clients" % "jedis" % "2.9.0"
 libraryDependencies += filters
 
+resolvers +=
+  "Artifactory" at "http://localhost:8081/artifactory/epgm_artifactory/"
+
+publishTo := Some("Artifactory Realm" at "http://localhost:8081/artifactory/epgm_artifactory")
+
+credentials += Credentials("Artifactory Realm", "localhost", "admin", "Epgm@combinators")
+
+libraryDependencies += "org.apache.derby" % "derby" % "10.4.1.3"
+
 
 

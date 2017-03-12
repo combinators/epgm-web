@@ -6228,15 +6228,19 @@ header.blue-bg .search:focus {
 /* Grade Report */
 
 .count-label {
+    font-size: 15px;
     color: #0f0f0f;
 }
 
 /* Donut Chart label */
 
+/* Gender Wise Chart */
 .label-male {
   background-color: #ccd1d1;
   color: #0f0f0f;
+  font-size: 13px;
 }
+
 .label-male[href]:hover,
 .label-male[href]:focus {
   background-color: #5e5e5e;
@@ -6244,21 +6248,46 @@ header.blue-bg .search:focus {
 
 .label-female {
   background-color: #566573;
+  font-size: 13px;
 }
 .label-female[href]:hover,
 .label-female[href]:focus {
   background-color: #5e5e5e;
 }
 
+/* Month Wise Report */
+
+.label-month {
+  background-color: #ccd1d1;
+  color: #0f0f0f;
+  font-size: 13px;
+}
+.label-month-count {
+  background-color: #ccd1d1;
+  color: #0f0f0f;
+  font-size: 13px;
+}
+
+
+/* Age Wise Report*/
+
 .label-0m-6m {
     background-color: #a1887f;
+    color: #0f0f0f;
+    font-size: 13px;
 }
 .label-6m-2Y{
     background-color: #bb8fce;
+    color: #0f0f0f;
+    font-size: 13px;
 }
 .label-2Y-3_5Y{
     background-color: #ccd1d1;
+    color: #0f0f0f;
+    font-size: 13px;
 }
 .label-3_5Y-6Y{
     background-color: #f7dc6f;
+    color: #0f0f0f;
+    font-size: 13px;
 }

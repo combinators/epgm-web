@@ -23,7 +23,7 @@ class WHOIndexedDataModelTest {
   def itShouldgetWHOIndexedData_AllState(): Unit ={
     //given
     //when
-    val actual = new WHOIndexedDataModel().create(None)
+    val actual = new WHOIndexedDataModel().create(None,"dashboard")
     //then
     println(actual)
   }

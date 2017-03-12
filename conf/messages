@@ -1,1 +1,16 @@
-application.name = ICDS
+application.name            = ICDS: Real Time Child Growth Monitoring
+application.title           = ICDS
+
+# SideBar
+sidebar.dashboard           = Dashboard
+sidebar.gmr                 = GMR
+
+# Dashboard Charts
+chart.grade.weighed         = Weighed
+chart.grade.severly         = Severly Malnourished
+chart.grade.moderately      = Moderately Malnourished
+chart.grade.normal          = Normal
+chart.gender                = Gender Wise
+chart.month                 = Month Wise
+chart.age                   = Age Group Wise
+

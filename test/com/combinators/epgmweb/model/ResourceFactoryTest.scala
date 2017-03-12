@@ -13,7 +13,7 @@ class ResourceFactoryTest {
     //given
     val sCode = "27"
     //when
-    val actual = ResourceFactory().getSpecificStateDetails(sCode)
+    val actual = ResourceFactory().getSpecificStateDetails(sCode,"dashboard")
     //then
     println(sCode)
   }

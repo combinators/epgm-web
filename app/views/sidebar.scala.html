@@ -1,3 +1,4 @@
+@()(implicit m: Messages)
 <aside>
     <div id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
@@ -5,13 +6,13 @@
             <li>
                 <a class="active" href="@routes.HomeController.index">
                     <i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span>
+                    <span>@Messages("sidebar.dashboard")</span>
                 </a>
             </li>
             <li class="sub-menu">
                 <a href="@routes.GmrController.displayGMR" >
                     <i class=" fa fa-bar-chart-o"></i>
-                    <span>GMR</span>
+                    <span>@Messages("sidebar.gmr")</span>
                 </a>
             </li>
 

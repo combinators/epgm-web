@@ -65,8 +65,8 @@ class EPGMDashboardDaoTest {
     val docType = "dashboard"
 
     //when
-    val stateRecord1 = EPGMDashboardDao[DB](sCode1, docType).data
-    val stateRecord2 = EPGMDashboardDao[DB](sCode2, docType).data
+    val stateRecord1 = EPGMDaoInterface(sCode1, docType).dashboardData
+    val stateRecord2 = EPGMDaoInterface(sCode2, docType).dashboardData
     println(stateRecord1)
 
     stateRecord1 shouldBe Map("suwcount" -> "20", "muwcount" -> "20", "normalcount" -> "60", "totalcount" -> "100")
@@ -81,8 +81,8 @@ class EPGMDashboardDaoTest {
     val docType = "dashboard"
     //when
 
-    val stateRecord1= EPGMDashboardDao[DB](sCode1, docType).data
-    val stateRecord2 = EPGMDashboardDao[DB](sCode2, docType).data
+    val stateRecord1= EPGMDaoInterface(sCode1, docType).dashboardData
+    val stateRecord2 = EPGMDaoInterface(sCode2, docType).dashboardData
     println(stateRecord1)
     //then
     stateRecord1 shouldBe Map("malecount" -> "64", "femalecount" -> "36")
@@ -97,8 +97,8 @@ class EPGMDashboardDaoTest {
     val docType = "dashboard"
     //when
 
-    val stateRecord1= EPGMDashboardDao[DB](sCode1, docType).data
-    val stateRecord2 = EPGMDashboardDao[DB](sCode2, docType).data
+    val stateRecord1= EPGMDaoInterface(sCode1, docType).dashboardData
+    val stateRecord2 = EPGMDaoInterface(sCode2, docType).dashboardData
     println(stateRecord1)
     //then
     stateRecord1 shouldBe
@@ -116,8 +116,8 @@ class EPGMDashboardDaoTest {
     val docType = "dashboard"
     //when
 
-    val stateRecord1= EPGMDashboardDao[DB](sCode1, docType).data
-    val stateRecord2 = EPGMDashboardDao[DB](sCode2, docType).data
+    val stateRecord1= EPGMDaoInterface(sCode1, docType).dashboardData
+    val stateRecord2 = EPGMDaoInterface(sCode2, docType).dashboardData
 
     println(stateRecord1)
 
