@@ -23,3 +23,6 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.1.0")
 
 // "Sass" CSS scripting: https://github.com/irundaia/sbt-sassify
 addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.6")
+
+// play swagger plugin
+addSbtPlugin("com.iheart" % "sbt-play-swagger" % "0.5.3")

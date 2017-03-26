@@ -9,8 +9,9 @@ import play.api.mvc._
   */
 class EPGMDashboardInitController extends Controller{
 
-  def get(sCode: String,docType: String) = Action {
-    Ok(Json.toJson(ResourceFactory().epgmDashboardData(sCode, docType)))
-  }
+
+    def get(sCode: String,docType: String) = Action {
+      Ok(Json.toJson(ResourceFactory().epgmDashboardData(sCode, docType)))
+    }
 
 }
