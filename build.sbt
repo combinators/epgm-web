@@ -32,7 +32,7 @@ dockerCommands := Seq()
 import com.typesafe.sbt.packager.docker._
 
 dockerCommands := Seq(
-  Cmd("FROM", "ikaee/alpine-java8"),
+  Cmd("FROM", "ikaee/alpine-bash-java8"),
   Cmd("MAINTAINER", "ikaee"),
   Cmd("WORKDIR", "/opt/docker"),
   Cmd("ADD", "opt /opt"),
