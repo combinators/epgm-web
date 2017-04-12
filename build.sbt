@@ -14,13 +14,13 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   filters,
-"com.microsoft.azure" % "azure-documentdb" % "1.9.1",
-"com.google.code.gson" % "gson" % "2.8.0",
-"org.scalatest" %% "scalatest" % "3.0.1" % "test",
-"junit" % "junit" % "4.12",
-"org.apache.derby" % "derby" % "10.4.1.3",
-"com.spotify" % "docker-client" % "3.5.13",
-"org.webjars" % "swagger-ui" % "2.2.0"
+  "com.microsoft.azure" % "azure-documentdb" % "1.9.1",
+  "com.google.code.gson" % "gson" % "2.8.0",
+  "org.scalatest" %% "scalatest" % "3.0.1" % "test",
+  "junit" % "junit" % "4.12",
+  "org.apache.derby" % "derby" % "10.4.1.3",
+  "com.spotify" % "docker-client" % "3.5.13",
+  "org.webjars" % "swagger-ui" % "2.2.0"
 )
 
 dockerCommands := Seq()
