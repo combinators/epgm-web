@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   filters,
-  "com.microsoft.azure" % "azure-documentdb" % "1.9.1",
+  "com.microsoft.azure" % "azure-documentdb" % "1.10.0",
   "com.google.code.gson" % "gson" % "2.8.0",
   "org.scalatest" %% "scalatest" % "3.0.1" % "test",
   "junit" % "junit" % "4.12",

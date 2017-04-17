@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.Singleton
 
-import model.ResourceFactory
+import model.ResourceRouter
 import play.api.libs.json.Json
 import play.api.mvc._
 
@@ -13,7 +13,7 @@ import play.api.mvc._
 @Singleton
 class StateDetailsController extends Controller{
   def getSpecificStateData(sCode: String, docType: String="dashboard") =
-    Action { Ok(Json.toJson(ResourceFactory().getSpecificStateDetails(sCode, docType))) }
+    Action { Ok(Json.toJson(ResourceRouter.getSpecificStateDetails(sCode, docType))) }
   def getAllStatesData() =
-    Action { Ok(Json.toJson(ResourceFactory().getAllStateDetails())) }
+    Action { Ok(Json.toJson(ResourceRouter.getAllStateDetails())) }
 }

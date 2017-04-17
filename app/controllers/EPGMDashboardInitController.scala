@@ -1,6 +1,6 @@
 package controllers
 
-import model.ResourceFactory
+import model.ResourceRouter
 import play.api.libs.json.Json
 import play.api.mvc._
 
@@ -9,9 +9,8 @@ import play.api.mvc._
   */
 class EPGMDashboardInitController extends Controller{
 
-
     def get(sCode: String,docType: String) = Action {
-      Ok(Json.toJson(ResourceFactory().epgmDashboardData(sCode, docType)))
+      Ok(Json.toJson(ResourceRouter.epgmDashboardData(sCode, docType)))
     }
 
 }

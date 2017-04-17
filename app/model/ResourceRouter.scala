@@ -1,7 +1,9 @@
 package model
 
+import dao.EPGMDaoInterface
 import model.entites.ConsolidatedStateResource
 import model.entites.dashboard.EPGMDashbordData
+import model.entites.masterdata.MasterChildData
 import services.{GmrHandler, GmrResource, GmrResourceData, GmrResourceUpdated}
 
 
@@ -9,7 +11,8 @@ import services.{GmrHandler, GmrResource, GmrResourceData, GmrResourceUpdated}
   * Created by kirankumarbs on 11/2/17.
   */
 
-case class ResourceFactory() {
+case object ResourceRouter {
+
   def epgmDashboardData(sCode: String, docType: String): EPGMDashbordData = EPGMDashbordData(sCode, docType)
 
 
@@ -24,4 +27,5 @@ case class ResourceFactory() {
   def getGMRDetails(awCode: String):List[GmrResource] = new GmrHandler().create(awCode)
 
 
+  def insertAdminDataIntoDB(masterChildData: MasterChildData) = EPGMDaoInterface().insertMasterChildData(masterChildData)
 }

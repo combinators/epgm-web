@@ -1,9 +1,4 @@
-@*
-* This template is called from the `index` template. This template
-* handles the rendering of the page header and body tags. It takes
-* two arguments, a `String` for the title of the page and an `Html`
-* object to insert into the body of the page.
-*@
+
 @(title: String)(implicit m: Messages)
 
 <!DOCTYPE html>
@@ -129,8 +124,8 @@
       $("#gmr").dataTable().fnDestroy()
 
           $('#gmr').DataTable( {
-            "ajax": "http://epgm-webapp.cloudapp.net:8080/epgm/gmreport/"+aw.value,
-            //"ajax": "http://localhost:8080/epgm/gmreport/"+aw.value,
+            //"ajax": "http://epgm-webapp.cloudapp.net:8080/epgm/gmreport/"+aw.value,
+            "ajax": "http://localhost:8080/epgm/gmreport/"+aw.value,
             "columns": [
                 { "data": "code" },
                 { "data": "name" },
@@ -162,8 +157,8 @@
           });
 
           $('#gmr').DataTable( {
-            "ajax": "http://epgm-webapp.cloudapp.net:8080/epgm/gmreport/27511010507",
-            //"ajax": "http://localhost:8080/epgm/gmreport/"+27511010507,
+            //"ajax": "http://epgm-webapp.cloudapp.net:8080/epgm/gmreport/27511010507",
+            "ajax": "http://localhost:8080/epgm/gmreport/"+27511010507,
             "columns": [
                 { "data": "code" },
                 { "data": "name" },

@@ -6,12 +6,12 @@ import com.microsoft.azure.documentdb.{ConnectionPolicy, ConsistencyLevel, Docum
   * Created by kirankumarbs on 12/2/17.
   */
 object DBConfigFactory{
-    def getHOST = "https://epgm.documents.azure.com:443/";
+    def getHOST = "https://epgmdb.documents.azure.com:443/";
     //
-    def getMASTER_KEY = "0r8CYYVlo87KvsDjCipWlZtEBXWa2u2qEQWjTtd1ab0B2psDKHO6sceXsFgxKWiTZ1nUObIBknN3u2WnrWE4ig==";
-    def getDATABASE_ID = "thewall"
-    def getCOLLECTION_ID = "tyrion"
-    def getDocumentClient = new DocumentClient(getHOST,
-      getMASTER_KEY, ConnectionPolicy.GetDefault(),
+    def masterKey = "TjNTMzB9lFaC6bIpu8kyTzrDGuQYjokMQhAVxEw9bAvoibuzCKnxW7RhYkBlWGkaq4b707Q63ldy0PIHhnyKng==";
+    def databaseId = "thewall"
+    def collectionId = "tyrion"
+    def documentClient = new DocumentClient(getHOST,
+      masterKey, ConnectionPolicy.GetDefault(),
       ConsistencyLevel.Session)
 }

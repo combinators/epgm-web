@@ -1,6 +1,6 @@
 package dao
 
-import dao.DBConfigFactory.getDocumentClient
+import dao.DBConfigFactory.documentClient
 import dao.DBConfigFactory._
 
 import scala.collection.JavaConverters._
@@ -13,8 +13,8 @@ object WHOIndexData{
   def getSpecificStateData(sCode: String) = get(" STARTSWITH(myCollection.aanganwadicode,\""+sCode+"\") and ")
 
   private def get(s: String): Map[AnyRef, Int] = {
-    getDocumentClient.queryDocuments(
-      "dbs/" + getDATABASE_ID + "/colls/" + getCOLLECTION_ID,
+    documentClient.queryDocuments(
+      "dbs/" + databaseId + "/colls/" + collectionId,
       "SELECT * FROM myCollection where"+s+
         "myCollection.whounderweight IN (\"0\",\"1\",\"2\",\"3\")",
       null).getQueryIterable().asScala.groupBy(w => w.get("whounderweight"))

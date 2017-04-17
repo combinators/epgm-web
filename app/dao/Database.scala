@@ -1,9 +1,11 @@
 package dao
-import com.microsoft.azure.documentdb.DocumentClient
+import com.google.gson.Gson
+import com.microsoft.azure.documentdb.{Document, DocumentClient}
 import constants.WHOConstants
 
 import scala.collection.JavaConverters._
 import dao.DBConfigFactory._
+import model.entites.masterdata.MasterChildData
 import services.GmrResourceUpdated
 
 
@@ -15,13 +17,13 @@ import services.GmrResourceUpdated
 trait   Database[T]{
   def dashboardData(code: String, dt: String): Map[String, String]
   def gmrData(code: String, dt: String): List[GmrResourceUpdated]
-  //def set(code: String, values: util.Map[String, String])
+  def insertMasterChildData(mcd: MasterChildData): Boolean
 }
 
 case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
   override def dashboardData(code: String, dt: String): Map[String, String] = {
 
-    val result = client.queryDocuments(s"dbs/$getDATABASE_ID/colls/$getCOLLECTION_ID",
+    val result = client.queryDocuments(s"dbs/$databaseId/colls/$collectionId",
       "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and tyrion.code = \""+code+"\"",null)
       .getQueryIterable.asScala
       result.headOption match {
@@ -32,7 +34,7 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
   }
 
   override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = {
-    val result = client.queryDocuments(s"dbs/$getDATABASE_ID/colls/$getCOLLECTION_ID",
+    val result = client.queryDocuments(s"dbs/$databaseId/colls/$collectionId",
       "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and  tyrion.aanganwadicode= \""+code+"\" order by tyrion.childcode asc",null)
       .getQueryIterable.asScala.toList
 
@@ -52,6 +54,16 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
       case Nil => List()
       case xs => xs
     }
+  }
+
+  override def insertMasterChildData(mcd: MasterChildData): Boolean = {
+    val entityJson = new Gson().toJson(mcd)
+    val entityDocument = new Document(entityJson)
+
+    val dResource = client.createDocument(s"dbs/$databaseId/colls/$collectionId",
+      entityDocument, null,false).getResource()
+    println("dResource  "+ dResource)
+    true
   }
 }
 
@@ -87,4 +99,6 @@ case class DocumentDBMock() extends Database[DocumentDBMock] {
       "currentyear" -> "17")  }
 
   override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = List()
+
+  override def insertMasterChildData(mcd: MasterChildData): Boolean = true
 }

@@ -103,7 +103,7 @@ class GmrHandler {
   }
 
   private def createGmrResourceUpdated(awCode: String): List[GmrResourceUpdated] = {
-    val gmrData = EPGMDaoInterface(awCode, "log").gmrData
+    val gmrData = EPGMDaoInterface().gmrData(awCode, "log")
     gmrDataarrangedByWHO(gmrData)
       .map(g =>
         GmrResourceUpdated(
@@ -115,7 +115,7 @@ class GmrHandler {
           g.cclass,
           g.logDates.substring(4,6)+"-"+g.logDates.substring(2,4)+"-"+g.logDates.substring(0,2)
             +" "+g.logDates.substring(6,8)+":"+g.logDates.substring(8,10)+":00",
-          g.weights,
+          (g.weights.toFloat / 1000).toString,
           g.whoGrades
         ))
 

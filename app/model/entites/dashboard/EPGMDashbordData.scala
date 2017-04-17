@@ -23,7 +23,7 @@ case class EPGMDashbordData(gradeData: GradeData,
 
 object EPGMDashbordData{
   def apply(sCode: String, docType: String): EPGMDashbordData ={
-    val md = EPGMDaoInterface(sCode,docType).dashboardData
+    val md = EPGMDaoInterface().dashboardData(sCode,docType)
     println(md)
     EPGMDashbordData(GradeData(md), GenderData(md), AgeData(md), MonthData(md))
 

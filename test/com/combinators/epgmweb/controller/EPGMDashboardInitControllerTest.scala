@@ -10,7 +10,12 @@ class EPGMDashboardInitControllerTest {
 
   @Test
   def itShouldGetEPGMDashboardInitData(): Unit ={
-    println(new EPGMDashboardInitController().get("27","dashboard"))
+    //given
+    //when
+    val result = new EPGMDashboardInitController().get("27","dashboard")
+    //result.parser.validate(_.)
+    //then
+
   }
 
 }
