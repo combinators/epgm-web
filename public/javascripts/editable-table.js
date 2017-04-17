@@ -36,6 +36,19 @@ var EditableTable = function () {
                 oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
                 oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
                 oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 6, false);
+                var data = {
+                           "aanganwadiCode":"27511010507", "code":jqInputs[0].value, "dob":jqInputs[1].value,"gender":jqInputs[2].value,"name":jqInputs[3].value,"father":jqInputs[4].value
+                           }
+                $.ajax({
+                    type :  "POST",
+                    contentType: "application/json",
+                    dataType: 'json',
+                    data: JSON.stringify(data),
+                    url  :  "http://localhost:8080/epgm/admin/childrecord",
+                    success: function(data){
+                            console.log(data);
+                        }
+                });
                 oTable.fnDraw();
             }
 

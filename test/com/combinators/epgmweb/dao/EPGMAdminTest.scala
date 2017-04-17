@@ -14,7 +14,7 @@ class EPGMAdminTest {
   @Test
   def testMasterChildDataIntoDatabase(): Unit ={
     //given
-    val masterChildRawData = MasterChildRawData("27511010507", "102", "010417",'M',"OMPRAKASH ","KALYANKAR ")
+    val masterChildRawData = MasterChildRawData("27511010507", "102", "010417","M","OMPRAKASH ","KALYANKAR ")
     val masterChildData     = MasterChildData(masterChildRawData).right.get
     val dao = EPGMDaoInterface()
     //when

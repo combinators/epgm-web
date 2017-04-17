@@ -12,7 +12,7 @@ trait EPGMDaoInterface{
 
   def dashboardData(code: String, docType: String): Map[String, String]
   def gmrData(code: String, docType: String): List[GmrResourceUpdated]
-  def insertMasterChildData(masterChildData: MasterChildData): Boolean
+  def insertMasterChildData(masterChildData: MasterChildData): String
 }
 
 object EPGMDaoInterface{
@@ -23,5 +23,7 @@ object EPGMDaoInterface{
 private case class EPGMDao[T]()(implicit db: Database[T]) extends EPGMDaoInterface{
   def dashboardData(code: String, docType: String)   = db.dashboardData(code, docType)
   override def gmrData(code: String, docType: String): List[GmrResourceUpdated] = db.gmrData(code, docType)
-  override def insertMasterChildData(masterChildData: MasterChildData): Boolean = db.insertMasterChildData(masterChildData)
+  override def insertMasterChildData(masterChildData: MasterChildData): String = {
+    db.insertMasterChildData(masterChildData)
+  }
 }

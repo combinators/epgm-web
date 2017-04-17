@@ -6,11 +6,11 @@ import scala.collection.mutable.ListBuffer
   * Created by kirankumarbs on 15/4/17.
   */
 case class MasterChildData(doctype: String, dayofbirth: String, monthofbirth: String, yearofbirth: String,
-                           address: String, sex: Char, recordnumber: String, childcode: String,
+                           address: String, sex: String, recordnumber: String, childcode: String,
                            category: String, name: String, fathername: String,
                            aanganwadiCode: String)
 
-case class MasterChildRawData(aanganwadiCode: String, code: String, dob: String, gender: Char, name: String, father: String)
+case class MasterChildRawData(aanganwadiCode: String, code: String, dob: String, gender: String, name: String, father: String)
 
 object MasterChildData {
 
@@ -40,7 +40,7 @@ object MasterChildData {
     def formatLengthMsg(name: String, length: String): String = s"$name length is not $length characters"
     def formatNaNMsg(name: String): String = s"$name contains other than number"
     def isNotNaN(s: String): Boolean = !s.matches("[0-9]+")
-    def isNotGender(g: Char): Boolean = !(m.gender.toUpper.equals('M') || m.gender.toUpper.equals('F'))
+    def isNotGender(g: String): Boolean = !(m.gender.toUpperCase == "M" || m.gender.toUpperCase =="F")
 
     msgs.toList
 

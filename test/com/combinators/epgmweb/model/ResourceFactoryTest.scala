@@ -31,7 +31,7 @@ class ResourceFactoryTest {
   @Test
   def testEPGMAdminDataInsertIntoDatabase: Unit ={
     //given
-    val masterChildRawData = MasterChildRawData("27511010507", "103", "010417",'M',"OMPRAKASH ","KALYANKAR ")
+    val masterChildRawData = MasterChildRawData("27511010507", "103", "010417","M","OMPRAKASH ","KALYANKAR ")
     val masterChildData     = MasterChildData(masterChildRawData).right.get
     //when
     val resource = ResourceRouter.insertAdminDataIntoDB(masterChildData)

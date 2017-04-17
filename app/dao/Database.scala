@@ -17,7 +17,7 @@ import services.GmrResourceUpdated
 trait   Database[T]{
   def dashboardData(code: String, dt: String): Map[String, String]
   def gmrData(code: String, dt: String): List[GmrResourceUpdated]
-  def insertMasterChildData(mcd: MasterChildData): Boolean
+  def insertMasterChildData(mcd: MasterChildData): String
 }
 
 case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
@@ -56,14 +56,14 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
     }
   }
 
-  override def insertMasterChildData(mcd: MasterChildData): Boolean = {
+  override def insertMasterChildData(mcd: MasterChildData): String = {
     val entityJson = new Gson().toJson(mcd)
     val entityDocument = new Document(entityJson)
 
     val dResource = client.createDocument(s"dbs/$databaseId/colls/$collectionId",
       entityDocument, null,false).getResource()
-    println("dResource  "+ dResource)
-    true
+
+    "Master Child "+mcd.childcode+" is inserted into database"
   }
 }
 
@@ -100,5 +100,5 @@ case class DocumentDBMock() extends Database[DocumentDBMock] {
 
   override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = List()
 
-  override def insertMasterChildData(mcd: MasterChildData): Boolean = true
+  override def insertMasterChildData(mcd: MasterChildData): String = "master child record is inserted"
 }

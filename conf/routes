@@ -22,6 +22,7 @@ GET     /epgm/:dashboard/:stateCode     controllers.EPGMDashboardInitController.
 
 # EPGM ADMIN Master
 GET     /epgm/admin                    controllers.EPGMAdminController.displayAdminPage
+POST    /epgm/admin/childrecord        controllers.EPGMAdminController.saveMasterChildData
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file)
