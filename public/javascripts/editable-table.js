@@ -47,10 +47,14 @@ var EditableTable = function () {
                     url  :  "http://localhost:8080/epgm/admin/childrecord",
                     success: function(data){
                             console.log(data);
+                            oTable.fnDraw();
+                            console.log(" master data is going to be cleared from UI")
+                            oTable.fnDeleteRow(nRow);
                         }
                 });
-                oTable.fnDraw();
+
             }
+
 
             function cancelEditRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
@@ -100,6 +104,8 @@ var EditableTable = function () {
                 editRow(oTable, nRow);
                 nEditing = nRow;
             });
+
+
 
             $('#editable-sample a.delete').live('click', function (e) {
                 e.preventDefault();

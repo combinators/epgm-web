@@ -25,12 +25,9 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
 
     val result = client.queryDocuments(s"dbs/$databaseId/colls/$collectionId",
       "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and tyrion.code = \""+code+"\"",null)
-      .getQueryIterable.asScala
-      result.headOption match {
-        case None => Map[String, String]()
-        case Some(x) => x.getHashMap.asScala.map(x => (x._1,x._2.toString)).toMap
-      }
+      .getQueryIterable.asScala.toList.maxBy(d => (d.get("currentyear") + d.get("currentmonth").toString).toInt)
 
+    result.getHashMap.asScala.map(x => (x._1,x._2.toString)).toMap
   }
 
   override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = {
