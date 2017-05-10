@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $.ajax({
-    url: "http://epgm-webapp.cloudapp.net:8080/epgm/dashboard/98"
+    url: "http://epgm-webapp.cloudapp.net:9090/epgm/dashboard/98"
     //url: "http://localhost:8080/epgm/dashboard/98"
     }).then(function(data) {
 
