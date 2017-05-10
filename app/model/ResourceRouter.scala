@@ -23,8 +23,9 @@ case object ResourceRouter {
     new WHOIndexedDataModel().create(None,"dashboard").head
   }
 
-  def getGMRDetailsUpdated(awCode: String):GmrResourceData = new GmrHandler().createGMR(awCode)
-  def getGMRDetails(awCode: String):List[GmrResource] = new GmrHandler().create(awCode)
+  def getGMRDetailsUpdated(stateCode: String, awCode: String):GmrResourceData =
+    new GmrHandler().createGMR(stateCode, awCode)
+  def getGMRDetails(stateCode: String, awCode: String):List[GmrResource] = new GmrHandler().create(stateCode, awCode)
 
 
   def insertAdminDataIntoDB(masterChildData: MasterChildData) = EPGMDaoInterface().insertMasterChildData(masterChildData)

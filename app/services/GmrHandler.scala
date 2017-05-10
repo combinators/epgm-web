@@ -94,16 +94,15 @@ object GmrResourceUpdated {
 
 class GmrHandler {
 
-  def create(awCode: String): List[GmrResource] = {
-    createGmrResource(awCode)
+  def create(stateCode: String, awCode: String): List[GmrResource] = {
+    createGmrResource(stateCode, awCode)
   }
 
-  def createGMR(awCode: String): GmrResourceData = {
-    GmrResourceData(createGmrResourceUpdated(awCode))
-  }
+  def createGMR(stateCode:String, awCode: String): GmrResourceData =
+    GmrResourceData(createGmrResourceUpdated(stateCode, awCode))
 
-  private def createGmrResourceUpdated(awCode: String): List[GmrResourceUpdated] = {
-    val gmrData = EPGMDaoInterface().gmrData(awCode, "log")
+  private def createGmrResourceUpdated(stateCode: String, awCode: String): List[GmrResourceUpdated] = {
+    val gmrData = EPGMDaoInterface().gmrData(stateCode, awCode, "log")
     gmrDataarrangedByWHO(gmrData)
       .map(g =>
         GmrResourceUpdated(
@@ -175,14 +174,14 @@ class GmrHandler {
 */
   }
 
-  private def createGmrResource(awCode: String): List[GmrResource] = {
+  private def createGmrResource(stateCode: String, awCode: String): List[GmrResource] = {
 
     /*GmrResource(
       1,"GANESH", "A KHADE", "M", "08/24/2014","OBC",
       List("08/13/2016","07/08/2016","06/10/2016"),
       List(14.140,13.975,13.745), List("SUW","MUW","MUW")) :: Nil*/
 
-    val gmrData = createGmrResourceUpdated(awCode)
+    val gmrData = createGmrResourceUpdated(stateCode, awCode)
 
     gmrData.groupBy(g => g.code).map(gu =>
       GmrResource(

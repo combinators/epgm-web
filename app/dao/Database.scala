@@ -1,3 +1,4 @@
+
 package dao
 import com.google.gson.Gson
 import com.microsoft.azure.documentdb.{Document, DocumentClient}
@@ -16,7 +17,7 @@ import services.GmrResourceUpdated
 
 trait   Database[T]{
   def dashboardData(code: String, dt: String): Map[String, String]
-  def gmrData(code: String, dt: String): List[GmrResourceUpdated]
+  def gmrData(stateCode:String, code: String, dt: String): List[GmrResourceUpdated]
   def insertMasterChildData(mcd: MasterChildData): String
 }
 
@@ -30,9 +31,9 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
     result.getHashMap.asScala.map(x => (x._1,x._2.toString)).toMap
   }
 
-  override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = {
+  override def gmrData(stateCode:String, code: String, dt: String): List[GmrResourceUpdated] = {
     val result = client.queryDocuments(s"dbs/$databaseId/colls/$collectionId",
-      "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and  tyrion.aanganwadicode= \""+code+"\" order by tyrion.childcode asc",null)
+      "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and  tyrion.aanganwadicode= \""+code+"\" and  tyrion.statecode= \""+stateCode+"\" order by tyrion.childcode asc",null)
       .getQueryIterable.asScala.toList
 
     val resultGroupedByChild =
@@ -95,7 +96,7 @@ case class DocumentDBMock() extends Database[DocumentDBMock] {
       "currentmonth" -> "02",
       "currentyear" -> "17")  }
 
-  override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = List()
+  override def gmrData(stateCode:String, code: String, dt: String): List[GmrResourceUpdated] = List()
 
   override def insertMasterChildData(mcd: MasterChildData): String = "master child record is inserted"
 }

@@ -11,7 +11,7 @@ import services.GmrResourceUpdated
 trait EPGMDaoInterface{
 
   def dashboardData(code: String, docType: String): Map[String, String]
-  def gmrData(code: String, docType: String): List[GmrResourceUpdated]
+  def gmrData(stateCode:String, code: String, docType: String): List[GmrResourceUpdated]
   def insertMasterChildData(masterChildData: MasterChildData): String
 }
 
@@ -22,7 +22,7 @@ object EPGMDaoInterface{
 
 private case class EPGMDao[T]()(implicit db: Database[T]) extends EPGMDaoInterface{
   def dashboardData(code: String, docType: String)   = db.dashboardData(code, docType)
-  override def gmrData(code: String, docType: String): List[GmrResourceUpdated] = db.gmrData(code, docType)
+  override def gmrData(stateCode: String, code: String, docType: String): List[GmrResourceUpdated] = db.gmrData(stateCode, code, docType)
   override def insertMasterChildData(masterChildData: MasterChildData): String = {
     db.insertMasterChildData(masterChildData)
   }
