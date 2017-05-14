@@ -22,12 +22,14 @@ class WHOIndexedDataModel() {
 
     val ePGMDashboardInitData = EPGMDashbordData(sCode.get, docType)
     val gd = ePGMDashboardInitData.gradeData
+    val lastModified = ePGMDashboardInitData.lastModified
 
     ConsolidatedStateResource(
       gd.total,
       gd.severe,
       gd.moderate,
-      gd.normal) :: Nil
+      gd.normal,
+      lastModified) :: Nil
 
     //ConsolidatedStateResource(100,0,0,100) :: Nil
   }

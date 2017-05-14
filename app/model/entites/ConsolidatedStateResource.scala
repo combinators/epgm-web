@@ -9,7 +9,8 @@ case class ConsolidatedStateResource
   (beneficieriesWeighed:Int,
    severlyUnderWeightBenefeciaries:Int,
    moderatelyUnderWeightBenefeciaries:Int,
-   normalBenefeciaries:Int)
+   normalBenefeciaries:Int,
+   lastModified: String)
 
 object ConsolidatedStateResource{
   /**
@@ -21,7 +22,8 @@ object ConsolidatedStateResource{
         "totalBenefeciariesWeighed" -> csr.beneficieriesWeighed,
         "numberOfSeverlyUnderWeightBenefeciaries" -> csr.severlyUnderWeightBenefeciaries,
         "numberOfModeratelyUnderWeightBenefeciaries" -> csr.moderatelyUnderWeightBenefeciaries,
-        "numberOfNormalBenefeciaries" -> csr.normalBenefeciaries
+        "numberOfNormalBenefeciaries" -> csr.normalBenefeciaries,
+        "lastmodified" -> csr.lastModified
       )
     }
   }
