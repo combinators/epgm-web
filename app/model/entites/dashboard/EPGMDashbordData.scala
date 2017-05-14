@@ -24,9 +24,9 @@ case class EPGMDashbordData(gradeData: GradeData,
 
 object EPGMDashbordData{
   def apply(sCode: String, docType: String): EPGMDashbordData ={
-    val md = EPGMDaoInterface().dashboardData(sCode,docType)
+    val md: Map[String, String] = EPGMDaoInterface().dashboardData(sCode,docType)
     println(md)
-    EPGMDashbordData(GradeData(md), GenderData(md), AgeData(md), MonthData(md),"May, 2017")
+    EPGMDashbordData(GradeData(md), GenderData(md), AgeData(md), MonthData(md),LastModified(md).toString)
 
   }
   /**
