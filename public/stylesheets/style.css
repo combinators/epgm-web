@@ -6291,3 +6291,6 @@ header.blue-bg .search:focus {
     color: #0f0f0f;
     font-size: 13px;
 }
+.lastmodified{
+    float: right;
+}

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.ajax({
-    url: "http://epgm-webapp.cloudapp.net:9090/epgm/dashboard/98"
-    //url: "http://localhost:8080/epgm/dashboard/98"
+    //url: "http://epgm-webapp.cloudapp.net:9090/epgm/dashboard/98"
+    url: "http://localhost:8080/epgm/dashboard/98"
     }).then(function(data) {
 
 /*    countUp(data.grade_data.total);
@@ -13,6 +13,7 @@ $(document).ready(function() {
     $('.count2').text(data.grade_data.severe).css("color", "black");
     $('.count3').text(data.grade_data.moderate).css("color", "black");
     $('.count4').text(data.grade_data.normal).css("color", "black");
+    $('.last-modified').text(data.lastmodified);
 
     new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(data.gender_data);
     new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(data.age_data);

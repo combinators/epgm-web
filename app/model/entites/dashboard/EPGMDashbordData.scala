@@ -17,15 +17,16 @@ import play.api.libs.json._
 case class EPGMDashbordData(gradeData: GradeData,
                             genderData: List[GenderData],
                             ageData: List[AgeData],
-                            monthData: MonthData
+                            monthData: MonthData,
+                            lastModified: String
                            )
 
 
 object EPGMDashbordData{
   def apply(sCode: String, docType: String): EPGMDashbordData ={
-    val md = EPGMDaoInterface().dashboardData(sCode,docType)
+    val md: Map[String, String] = EPGMDaoInterface().dashboardData(sCode,docType)
     println(md)
-    EPGMDashbordData(GradeData(md), GenderData(md), AgeData(md), MonthData(md))
+    EPGMDashbordData(GradeData(md), GenderData(md), AgeData(md), MonthData(md),LastModified(md).toString)
 
   }
   /**
@@ -37,7 +38,8 @@ object EPGMDashbordData{
         "grade_data"  -> GradeData(epgmDD.gradeData),
         "gender_data"  -> GenderData(epgmDD.genderData),
         "age_data"  -> AgeData(epgmDD.ageData),
-        "month_data"  -> MonthData(epgmDD.monthData)
+        "month_data"  -> MonthData(epgmDD.monthData),
+        "lastmodified" -> epgmDD.lastModified
       )
     }
   }
