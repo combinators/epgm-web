@@ -1,7 +1,7 @@
 package com.combinators.epgmweb.controller
 
 import controllers.EPGMAdminController
-import org.junit.Test
+import org.junit.{Ignore, Test}
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.Json
 import play.api.test.Helpers._
@@ -9,6 +9,7 @@ import play.api.test._
 import play.api.i18n.MessagesApi
 import play.api.mvc.Result
 import org.scalatest.Matchers._
+
 import scala.concurrent.Future
 
 /**
@@ -17,6 +18,7 @@ import scala.concurrent.Future
 
 class EPGMAdminControllerTest {
 
+  @Ignore
   @Test
   def testSaveMasterChildData(): Unit ={
     //given

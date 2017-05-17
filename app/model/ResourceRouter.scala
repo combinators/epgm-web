@@ -2,7 +2,7 @@ package model
 
 import dao.EPGMDaoInterface
 import model.entites.ConsolidatedStateResource
-import model.entites.dashboard.EPGMDashbordData
+import model.entites.dashboard.EPGMDashboardData
 import model.entites.masterdata.MasterChildData
 import services.{GmrHandler, GmrResource, GmrResourceData, GmrResourceUpdated}
 
@@ -13,14 +13,18 @@ import services.{GmrHandler, GmrResource, GmrResourceData, GmrResourceUpdated}
 
 case object ResourceRouter {
 
-  def epgmDashboardData(sCode: String, docType: String): EPGMDashbordData = EPGMDashbordData(sCode, docType)
+  def epgmDashboardData(filters: Option[Map[String, String]]=None): Either[List[String], EPGMDashboardData] =
+    EPGMDashboardData(filters)
 
 
-  def getSpecificStateDetails(sCode: String, docType: String):ConsolidatedStateResource  = {
-    new WHOIndexedDataModel().create(Some(sCode), docType).head
+  def getSpecificStateDetails(sCode: String, docType: String): Either[List[String], ConsolidatedStateResource]  = {
+    new WHOIndexedDataModel().create(Some(sCode), docType) match {
+      case Left(l) => Left(l)
+      case Right(r) => Right(r.head)
+    }
   }
-  def getAllStateDetails():ConsolidatedStateResource  = {
-    new WHOIndexedDataModel().create(None,"dashboard").head
+  def getAllStateDetails(): Either[List[String], List[ConsolidatedStateResource]]  = {
+    new WHOIndexedDataModel().create(None,"dashboard")
   }
 
   def getGMRDetailsUpdated(awCode: String):GmrResourceData = new GmrHandler().createGMR(awCode)

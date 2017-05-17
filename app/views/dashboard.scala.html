@@ -1,6 +1,21 @@
 @()(implicit m: Messages)
 <section id="main-content">
     <section class="wrapper">
+        <select id="monthfilter" onchange="populateDashboardSpecificMonth(this)">
+            <option value="01">JANUARY</option>
+            <option value="02">FEBRUARY</option>
+            <option value="03">MARCH</option>
+            <option value="04">APRIL</option>
+            <option value="05">MAY</option>
+            <option value="06">JUNE</option>
+            <option value="07">JULY</option>
+            <option value="08">AUGUST</option>
+            <option value="09">SEPTEMBER</option>
+            <option value="10">OCTOBER</option>
+            <option value="11">NOVEMBER</option>
+            <option value="12">DECEMBER</option>
+        </select>
+
         @grade()
         @chart_dashboard()
     </section>

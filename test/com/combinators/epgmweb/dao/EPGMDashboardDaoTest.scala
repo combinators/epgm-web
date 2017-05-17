@@ -65,9 +65,9 @@ class EPGMDashboardDaoTest {
     val docType = "dashboard"
 
     //when
-    val stateRecord1 = EPGMDaoInterface().dashboardData(sCode1, docType)
+/*    val stateRecord1 = EPGMDaoInterface().dashboardData(sCode1, docType)
     val stateRecord2 = EPGMDaoInterface().dashboardData(sCode2, docType)
-    println(stateRecord1)
+    println(stateRecord1)*/
 
     //stateRecord1 shouldBe Map("suwcount" -> "20", "muwcount" -> "20", "normalcount" -> "60", "totalcount" -> "100")
     //stateRecord2 shouldBe Map("suwcount" -> "15", "muwcount" -> "35", "normalcount" -> "30", "totalcount" -> "80")
@@ -81,9 +81,9 @@ class EPGMDashboardDaoTest {
     val docType = "dashboard"
     //when
 
-    val stateRecord1= EPGMDaoInterface().dashboardData(sCode1, docType)
+/*    val stateRecord1= EPGMDaoInterface().dashboardData(sCode1, docType)
     val stateRecord2 = EPGMDaoInterface().dashboardData(sCode2, docType)
-    println(stateRecord1)
+    println(stateRecord1)*/
     //then
 /*    stateRecord1 shouldBe Map("malecount" -> "64", "femalecount" -> "36")
     stateRecord2 shouldBe Map("malecount" -> "24", "femalecount" -> "36")*/
@@ -97,9 +97,9 @@ class EPGMDashboardDaoTest {
     val docType = "dashboard"
     //when
 
-    val stateRecord1= EPGMDaoInterface().dashboardData(sCode1, docType)
+/*    val stateRecord1= EPGMDaoInterface().dashboardData(sCode1, docType)
     val stateRecord2 = EPGMDaoInterface().dashboardData(sCode2, docType)
-    println(stateRecord1)
+    println(stateRecord1)*/
     //then
 /*    stateRecord1 shouldBe
       Map("zerotoonecount" -> "12", "onetotwocount" -> "14","twotothreecount" -> "08", "threetofourcount" -> "22",
@@ -116,10 +116,10 @@ class EPGMDashboardDaoTest {
     val docType = "dashboard"
     //when
 
-    val stateRecord1= EPGMDaoInterface().dashboardData(sCode1, docType)
+/*    val stateRecord1= EPGMDaoInterface().dashboardData(sCode1, docType)
     val stateRecord2 = EPGMDaoInterface().dashboardData(sCode2, docType)
 
-    println(stateRecord1)
+    println(stateRecord1)*/
 
     //then
 /*

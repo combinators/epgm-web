@@ -1,5 +1,6 @@
 package dao
 
+import com.microsoft.azure.documentdb.Document
 import model.entites.masterdata.MasterChildData
 import model.entites.masterdata.MasterChildData.Messages
 import services.GmrResourceUpdated
@@ -10,7 +11,7 @@ import services.GmrResourceUpdated
 
 trait EPGMDaoInterface{
 
-  def dashboardData(code: String, docType: String): Map[String, String]
+  def dashboardData(filters: Option[Map[String, String]]= None): Either[List[String], Map[String, String]]
   def gmrData(code: String, docType: String): List[GmrResourceUpdated]
   def insertMasterChildData(masterChildData: MasterChildData): String
 }
@@ -21,7 +22,7 @@ object EPGMDaoInterface{
 }
 
 private case class EPGMDao[T]()(implicit db: Database[T]) extends EPGMDaoInterface{
-  def dashboardData(code: String, docType: String)   = db.dashboardData(code, docType)
+  def dashboardData(filters: Option[Map[String, String]]= None)   = db.dashboardData(filters)
   override def gmrData(code: String, docType: String): List[GmrResourceUpdated] = db.gmrData(code, docType)
   override def insertMasterChildData(masterChildData: MasterChildData): String = {
     db.insertMasterChildData(masterChildData)

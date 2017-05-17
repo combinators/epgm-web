@@ -17,7 +17,8 @@ GET     /gmr                                           controllers.GmrController
 
 
 # EPGM Dashboard Aggregated Data
-GET     /epgm/:dashboard/:stateCode     controllers.EPGMDashboardInitController.get(stateCode,dashboard)
+GET     /epgm/:dashboard/:stateCode     controllers.EPGMDashboardInitController.get(stateCode, dashboard)
+GET     /epgm/:dashboard/:stateCode/:currentmonth     controllers.EPGMDashboardInitController.getMonthSpecific(stateCode, dashboard, currentmonth)
 
 
 # EPGM ADMIN Master

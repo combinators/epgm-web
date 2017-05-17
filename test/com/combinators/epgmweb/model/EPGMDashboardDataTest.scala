@@ -20,8 +20,8 @@ class EPGMDashboardDataTest {
         List(Datasets("rgba(151,187,205,0.5)",
           "rgba(151,187,205,1)",List(100, 80, 60, 55, 40, 35, 30, 25, 20, 15, 15, 5)))))*/
     //when
-    val actual = EPGMDashbordData(sCode,"dashboard")
-    println(actual)
+/*    val actual = EPGMDashboardData(sCode,"dashboard")
+    println(actual)*/
     //then
     //actual shouldBe expected
   }

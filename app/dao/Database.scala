@@ -15,19 +15,28 @@ import services.GmrResourceUpdated
   */
 
 trait   Database[T]{
-  def dashboardData(code: String, dt: String): Map[String, String]
+  def dashboardData(filters: Option[Map[String, String]]= None): Either[List[String], Map[String, String]]
   def gmrData(code: String, dt: String): List[GmrResourceUpdated]
   def insertMasterChildData(mcd: MasterChildData): String
 }
 
 case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
-  override def dashboardData(code: String, dt: String): Map[String, String] = {
+  override def dashboardData(filters: Option[Map[String, String]]= None): Either[List[String], Map[String, String]] = {
+
+    def filterCondition(table: String) = filters.get.toList.map((f) => table+"."+f._1+" = \""+f._2+"\"").mkString(" and ")
+    val query = s"SELECT * FROM tyrion where ${filterCondition("tyrion")}"
 
     val result = client.queryDocuments(s"dbs/$databaseId/colls/$collectionId",
-      "SELECT * FROM tyrion where tyrion.doctype = \""+dt+"\" and tyrion.code = \""+code+"\"",null)
-      .getQueryIterable.asScala.toList.maxBy(d => (d.get("currentyear") + d.get("currentmonth").toString).toInt)
+      query,null)
+      .getQueryIterable.asScala.toList match {
+      case Nil => Left(List("No Weighment is Done For Month "+filters.get("currentmonth")))
+      case xs => Right(xs.maxBy(d => (d.get("currentyear") + d.get("currentmonth").toString).toInt))
+    }
 
-    result.getHashMap.asScala.map(x => (x._1,x._2.toString)).toMap
+    result match {
+      case Left(l) => Left(l)
+      case Right(r) => Right(r.getHashMap.asScala.map(x => (x._1,x._2.toString)).toMap)
+    }
   }
 
   override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = {
@@ -65,8 +74,8 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
 }
 
 case class DocumentDBMock() extends Database[DocumentDBMock] {
-  override def dashboardData(code: String, dt: String): Map[String, String] = {
-    Map("doctype" -> "dashboard",
+  override def dashboardData(filters: Option[Map[String, String]]= None): Either[List[String], Map[String, String]] = {
+    Right(Map("doctype" -> "dashboard",
       "code" -> "27",
       "totalcount" -> "10000",
       "suwcount" -> "2000",
@@ -93,7 +102,7 @@ case class DocumentDBMock() extends Database[DocumentDBMock] {
       "novembercount" -> "400",
       "decembercount" -> "355",
       "currentmonth" -> "02",
-      "currentyear" -> "17")  }
+      "currentyear" -> "17"))  }
 
   override def gmrData(code: String, dt: String): List[GmrResourceUpdated] = List()
 

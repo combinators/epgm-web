@@ -2,7 +2,7 @@ package model
 
 import dao.DocumentDBDao
 import model.entites.ConsolidatedStateResource
-import model.entites.dashboard.EPGMDashbordData
+import model.entites.dashboard.EPGMDashboardData
 
 
 /**
@@ -15,12 +15,21 @@ import model.entites.dashboard.EPGMDashbordData
 
 class WHOIndexedDataModel() {
 
-  def create(sCode: Option[String], docType: String): List[ConsolidatedStateResource] =
+  def create(sCode: Option[String], docType: String): Either[List[String],List[ConsolidatedStateResource]] =
     createConsolidatedStateResource(sCode, docType)
 
-  private def createConsolidatedStateResource(sCode: Option[String], docType: String): List[ConsolidatedStateResource] = {
+  private def createConsolidatedStateResource(sCode: Option[String], docType: String): Either[List[String],List[ConsolidatedStateResource]] = {
 
-    val ePGMDashboardInitData = EPGMDashbordData(sCode.get, docType)
+    val ePGMDashboardInitData =
+      EPGMDashboardData(Option(Map("code" -> sCode.get, "doctype" -> docType)))
+
+    ePGMDashboardInitData match {
+      case Left(l) => Left(l)
+      case Right(r) => Right(createConsolidatedResource(r))
+    }
+  }
+
+  def createConsolidatedResource(ePGMDashboardInitData: EPGMDashboardData) = {
     val gd = ePGMDashboardInitData.gradeData
     val lastModified = ePGMDashboardInitData.lastModified
 
@@ -30,8 +39,6 @@ class WHOIndexedDataModel() {
       gd.moderate,
       gd.normal,
       lastModified) :: Nil
-
-    //ConsolidatedStateResource(100,0,0,100) :: Nil
   }
 
 }

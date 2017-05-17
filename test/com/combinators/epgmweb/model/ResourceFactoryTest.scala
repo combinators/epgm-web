@@ -24,7 +24,7 @@ class ResourceFactoryTest {
     //given
     val sCode = "27"
     //when
-    val actual = ResourceRouter.epgmDashboardData(sCode,"dashboard")
+//    val actual = ResourceRouter.epgmDashboardData(sCode,"dashboard")
     //then
   }
 
