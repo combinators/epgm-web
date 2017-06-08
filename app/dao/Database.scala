@@ -63,8 +63,8 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
   }
 
   override def insertMasterChildData(mcd: MasterChildData): String = {
-    val entityJson = new Gson().toJson(mcd)
-    val entityDocument = new Document(entityJson)
+    val entityJson: String = new Gson().toJson(mcd)
+    val entityDocument: Document = new Document(entityJson)
 
     val dResource = client.createDocument(s"dbs/$databaseId/colls/$collectionId",
       entityDocument, null,false).getResource()

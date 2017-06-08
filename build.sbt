@@ -20,7 +20,8 @@ libraryDependencies ++= Seq(
   "junit" % "junit" % "4.12",
   "org.apache.derby" % "derby" % "10.4.1.3",
   "com.spotify" % "docker-client" % "3.5.13",
-  "org.webjars" % "swagger-ui" % "2.2.0"
+  "org.webjars" % "swagger-ui" % "2.2.0",
+  "com.lightbend.akka" % "akka-stream-alpakka-ftp_2.11" % "0.9"
 )
 
 dockerCommands := Seq()
