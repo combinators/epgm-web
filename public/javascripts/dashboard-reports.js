@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.ajax({
     url: "http://epgm-webapp.cloudapp.net:9090/epgm/dashboard/98"
-    //url: "http://localhost:8080/epgm/dashboard/98"
+    //url: "http://localhost:9090/epgm/dashboard/98"
     }).then(function(data) {
 
 /*    countUp(data.grade_data.total);

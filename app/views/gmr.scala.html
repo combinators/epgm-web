@@ -42,16 +42,7 @@
         <section class="wrapper">
 
             <select id="aanganwadi" onchange="populateGMR(this)">
-                <option value="27511010507">PIMPALGAO 2</option>
-                <option value="27511010509">PIMPALGAO 4</option>
-                <option value="27511010209">YELEGOAN (1)</option>
-                <option value="27511010211">YELEGOAN (3)</option>
-                <option value="27511010406">KONDHA 3</option>
-                <option value="27511010407">KONDHA 4</option>
-                <option value="27511010109">LAHAN 4</option>
-                <option value="27511010111">LAHAN 6</option>
-                <option value="27511010305">MALEGAON-3</option>
-                <option value="27511010306">MALEGAON-4</option>
+                <option value="98123456789">INTERNATIONAL</option>
 
             </select>
 
@@ -125,7 +116,7 @@
 
           $('#gmr').DataTable( {
             "ajax": "http://epgm-webapp.cloudapp.net:9090/epgm/gmreport/98/"+aw.value,
-            //"ajax": "http://localhost:8080/epgm/gmreport/98/"+aw.value,
+            //"ajax": "http://localhost:9090/epgm/gmreport/98/"+aw.value,
             "columns": [
                 { "data": "code" },
                 { "data": "name" },
@@ -157,8 +148,8 @@
           });
 
           $('#gmr').DataTable( {
-            "ajax": "http://epgm-webapp.cloudapp.net:9090/epgm/gmreport/98/27511010507",
-            //"ajax": "http://localhost:8080/epgm/gmreport/98/"+27511010507,
+            "ajax": "http://epgm-webapp.cloudapp.net:9090/epgm/gmreport/98/98123456789",
+            //"ajax": "http://localhost:9090/epgm/gmreport/98/"+98123456789,
             "columns": [
                 { "data": "code" },
                 { "data": "name" },
