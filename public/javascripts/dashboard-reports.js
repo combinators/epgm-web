@@ -3,8 +3,8 @@ $(document).ready(function() {
 });
 
 function getUrl(){
-    return "http://epgm-webapp.cloudapp.net:8080/epgm/dashboard/27";
-    //return "http://localhost:8080/epgm/dashboard/27";
+    return "http://epgmweb.centralindia.cloudapp.azure.com:8080/epgm/dashboard/27";
+    //return "http://localhost:9000/epgm/dashboard/27";
 }
 
 function populateMonth(data){

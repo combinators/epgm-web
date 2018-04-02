@@ -27,7 +27,7 @@ object FTPWrite extends App{
   val sink: Sink[ByteString, Future[IOResult]] = Ftp.toPath("/EPGM/A27511010209/LOGDATA.TXT", settings, true)
 
   ByteString("sss".getBytes)
-  Source(Array("funny").toVector).runForeach(println)
+  //Source(Array("funny").toVector).runForeach(println)
 
 
 

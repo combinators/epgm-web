@@ -2,9 +2,6 @@ name := """epgm-web"""
 version := "1.0-SNAPSHOT"
 scalaVersion := "2.11.8"
 
-resolvers +=
-  "Artifactory" at "http://localhost:8081/artifactory/epgm_artifactory/"
-
 
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala, DockerPlugin, SwaggerPlugin)
@@ -41,5 +38,6 @@ dockerCommands := Seq(
 )
 
 swaggerDomainNameSpaces := Seq("models")
+PlayKeys.playDefaultPort := 8081
 
 
