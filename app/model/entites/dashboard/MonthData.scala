@@ -8,9 +8,9 @@ import play.api.libs.json.Json
 /**
   * Month Wise Data from January to December. Data is sum of SUW + MUW
   */
-case class MonthData(labels: List[String], datasets: List[Datasets])
+case class MonthData(name: String, value: Int)
 object MonthData{
-  def apply(md: Map[String, String]): MonthData =
+  def apply(md: Map[String, String]): List[MonthData] =
   {
 
     val mConst = Map("01" -> "Jan","02" -> "Feb","03" -> "Mar","04" -> "Apr","05" -> "May","06" -> "Jun","07" -> "Jul","08" -> "Aug","09" -> "Sep","10" -> "Oct",
@@ -29,19 +29,15 @@ object MonthData{
       loop(raw,List[(String, String)]())
     }
 
-    val combinedData = prepareMonthData(mDataRaw).unzip
+    val combinedData = prepareMonthData(mDataRaw)
 
-    MonthData(combinedData._1.map(x => mConst.get(x).get),
-      Datasets("rgba(151,187,205,0.5)", "rgba(151,187,205,1)", combinedData._2.map(_.toInt)) :: Nil)
+    combinedData.map(d => MonthData(mConst.get(d._1).get, d._2.toInt))
+
+
   }
 
-  def apply(md: MonthData) =
-    Json.obj(
-      "labels" -> md.labels,
-      "datasets" -> Datasets(md.datasets))
-}
-case class Datasets(fillColor: String, strokeColor: String, data: List[Int])
-object Datasets{
-  def apply(ds: List[Datasets]) =
-    ds.map(d => Json.obj("fillColor" -> d.fillColor, "strokeColor" -> d.strokeColor, "data" -> d.data))
+  def apply(md: List[MonthData]) =
+    md.map(m => Json.obj(
+      "name" -> m.name,
+      "value" -> m.value))
 }

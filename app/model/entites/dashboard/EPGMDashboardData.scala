@@ -17,7 +17,7 @@ import play.api.libs.json._
 case class EPGMDashboardData(gradeData: GradeData,
                              genderData: List[GenderData],
                              ageData: List[AgeData],
-                             monthData: MonthData,
+                             monthData: List[MonthData],
                              lastModified: String
                            )
 

@@ -1,67 +1,11 @@
 import dao.DBConfigFactory._
 import scala.collection.JavaConverters._
 
-object removeAllAttendance extends App{
+object removeAllData extends App{
 
   val documents = documentClient.queryDocuments(
     "dbs/" + databaseId + "/colls/" + collectionId,
-    "SELECT * FROM tyrion where tyrion.doctype=\"attendance\" ",
-    null).getQueryIterable().asScala.toList
-
-  println(documents)
-
-  documents.foreach(d => {
-    documentClient.deleteDocument(d.getSelfLink(), null)
-  })
-
-}
-object removeAllThr extends App{
-
-  val documents = documentClient.queryDocuments(
-    "dbs/" + databaseId + "/colls/" + collectionId,
-    "SELECT * FROM tyrion where tyrion.doctype=\"thr\" ",
-    null).getQueryIterable().asScala.toList
-
-  println(documents)
-
-  documents.foreach(d => {
-    documentClient.deleteDocument(d.getSelfLink(), null)
-  })
-
-}
-object removeAllHotCooked extends App{
-
-  val documents = documentClient.queryDocuments(
-    "dbs/" + databaseId + "/colls/" + collectionId,
-    "SELECT * FROM tyrion where tyrion.doctype=\"hot-cooked\" ",
-    null).getQueryIterable().asScala.toList
-
-  println(documents)
-
-  documents.foreach(d => {
-    documentClient.deleteDocument(d.getSelfLink(), null)
-  })
-
-}
-object removeAllRegistration extends App{
-
-  val documents = documentClient.queryDocuments(
-    "dbs/" + databaseId + "/colls/" + collectionId,
-    "SELECT * FROM tyrion where  tyrion.doctype=\"registration\" ",
-    null).getQueryIterable().asScala.toList
-
-  println(documents)
-
-  documents.foreach(d => {
-    documentClient.deleteDocument(d.getSelfLink(), null)
-  })
-
-}
-object removeAllImage extends App{
-
-  val documents = documentClient.queryDocuments(
-    "dbs/" + databaseId + "/colls/" + collectionId,
-    "SELECT * FROM tyrion where  tyrion.doctype=\"image\" ",
+    "SELECT * FROM tyrion",
     null).getQueryIterable().asScala.toList
 
   println(documents)

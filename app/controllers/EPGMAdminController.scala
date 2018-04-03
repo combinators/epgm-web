@@ -15,15 +15,15 @@ import JsonToModelConverter._
 class EPGMAdminController @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport{
 
   def saveMasterChildData = Action { request =>
-    val json = request.body.asJson.get
+/*    val json = request.body.asJson.get
     println("====############"+json)
     val masterChildRawData: JsResult[MasterChildRawData] = json.validate[MasterChildRawData]
     val masterChildData: Either[List[String],MasterChildData] = MasterChildData(masterChildRawData.get)
     val result: List[String] = masterChildData match {
       case Left(msgs) => msgs
       case Right(mcd) => List(EPGMDaoInterface().insertMasterChildData(mcd))
-    }
-    Ok(Json.toJson(result))
+    }*/
+    Ok("ok")
   }
 
 
