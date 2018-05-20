@@ -40,6 +40,8 @@ case class GmrResourceUpdated
  cclass:String,
  logDates:String,
  weights:String,
+ height: String,
+ bmi: String,
  whoGrades: WHOConstants.WHO
 )
 
@@ -73,6 +75,8 @@ object GmrResourceUpdated {
     "class" -> gmr.cclass,
     "logDates" -> gmr.logDates,
     "weights" ->  gmr.weights,
+    "height" -> gmr.height,
+    "bmi" -> gmr.bmi,
     "whoGrades" ->  gmr.whoGrades.toString))
 
 
@@ -87,6 +91,8 @@ object GmrResourceUpdated {
         "class" -> gmr.cclass,
         "logDates" -> gmr.logDates,
         "weights" ->  gmr.weights,
+        "height" -> gmr.height,
+        "bmi" -> gmr.bmi,
         "whoGrades" ->  gmr.whoGrades.toString)
     }
   }
@@ -116,6 +122,8 @@ class GmrHandler {
           g.logDates.substring(4,6)+"-"+g.logDates.substring(2,4)+"-"+g.logDates.substring(0,2)
             +" "+g.logDates.substring(6,8)+":"+g.logDates.substring(8,10)+":00",
           (g.weights.toFloat / 1000).toString,
+          g.height,
+          g.bmi,
           g.whoGrades
         ))
 

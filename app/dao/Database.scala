@@ -54,6 +54,8 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
           d.get("category").toString,
           d.get("year").toString +d.get("month").toString +d.get("day").toString+d.get("hours").toString+d.get("minutes").toString,
           d.get("weight").toString,
+          d.get("height").toString,
+          d.get("bmi").toString,
           WHOConstants(d.get("whounderweight").toString)))
 
     resultGroupedByChild match {

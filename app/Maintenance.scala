@@ -33,10 +33,10 @@ object getAllDashboardData extends App{
 
   println("master registration data ===>" + dashboard)
 }
-object getImageData extends App{
+object getLogData extends App{
   val dashboard = documentClient.queryDocuments(
     "dbs/" + databaseId + "/colls/" + collectionId,
-    "SELECT * FROM tyrion where tyrion.doctype=\"image\" ",
+    "SELECT * FROM tyrion where tyrion.doctype=\"log\" ",
     null).getQueryIterable().toList()
 
   println("master data ===>" + dashboard)
