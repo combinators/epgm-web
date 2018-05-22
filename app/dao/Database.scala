@@ -56,6 +56,8 @@ case class DocumentDB(client: DocumentClient) extends Database[DocumentDB] {
           d.get("weight").toString,
           d.get("height").toString,
           d.get("bmi").toString,
+          d.get("stunting").toString,
+          d.get("wasting").toString,
           WHOConstants(d.get("whounderweight").toString)))
 
     resultGroupedByChild match {
